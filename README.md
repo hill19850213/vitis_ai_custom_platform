@@ -87,8 +87,8 @@ For Vitis AI platform, DPU is integrated as RTL kernel. To create a Vitis AI pla
    c) Select clk_in1 on clk_wiz_0, and set the Clock Source to ***/zynq_ultra_ps_e_0/pl_clk0***.<br />
    d) For each proc_sys_reset instance, select the slowest_sync_clk, and set the Clock Source as follows:<br />
       - proc_sys_reset_100m with /clk_wiz_0/clk_100m<br />
-      - proc_sys_reset_200m with /clk_wiz_0/clk_300m<br />
-      - proc_sys_reset_400m with /clk_wiz_0/clk_600m<br />
+      - proc_sys_reset_300m with /clk_wiz_0/clk_300m<br />
+      - proc_sys_reset_600m with /clk_wiz_0/clk_600m<br />
 
    e) On each proc_sys_reset instance, select the ***ext_reset_in***, set ***Board Part Interface*** to ***Custom*** and set the ***Select Manual Source*** to ***/zynq_ultra_ps_e_0/pl_resetn0***.<br />
    f) Make sure all checkboxes are enabled, and click ***OK*** to close the dialog and create the connections.<br />
