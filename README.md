@@ -120,7 +120,7 @@ You can provide kernel interrupt support by adding an AXI interrupt controller t
    l) Setup ***PFM_IRQ** property by typing following command in Vivado console:<br />
    ```set_property PFM.IRQ {intr {id 0 range 32}} [get_bd_cells /axi_intc_0]```<br />
 ***The IPI design connection would like below:***<br />
-![ipi_fully_connection.png](/pic_for_readme/ipi_fully_connection.png)<br /><br />
+![ipi_fully_connection.png](/pic_for_readme/ipi_designn.png)<br /><br />
 ***Note: Now we have finished the IPI design input, let's set some platform parameters and generate the DSA***<br /><br /><br />
 
 ## Configuring Platform Interface Properties<br /><br />
