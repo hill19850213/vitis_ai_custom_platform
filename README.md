@@ -94,7 +94,7 @@ For Vitis AI platform, DPU is integrated as RTL kernel. To create a Vitis AI pla
    f) Make sure all checkboxes are enabled, and click ***OK*** to close the dialog and create the connections.<br />
    g) Connect all the ***dcm_locked*** signals on each proc_sys_reset instance to the locked signal on ***clk_wiz_0***.<br />
    Then the connection should like below:<br />
-   ![clk_rst_connection.png](/pic_for_readme/clk_rst_connection.png)<br /><br />
+   ![clk_rst_connection.png](/pic_for_readme/reset_system.png)<br /><br />
 ***Now we have added clock and reset IPs and configure and connect them. Some would be used in creating the hardware platform and some would be called in Vitis high level design***<br /><br />
 
 9. Add Kernel Interrupt Support<br />
