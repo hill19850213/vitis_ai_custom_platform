@@ -323,7 +323,7 @@ source /opt/xilinx/xrt/setup.sh
 2. Go to the ***zcu104_dpu_pkg*** folder you created: ```cd <full_pathname_to_zcu104_dpu_pkg>```.<br />
 3. Launch Vitis by typing ```vits``` in the console.<br />
 4. Select ***zcu104_dpu_pkg*** folder as workspace directory.<br />
-![vitis_launch.png](/pic_for_readme/vitis_launch.png)<br /><br />
+![vitis_launch.png](/pic_for_readme/workspace.png)<br /><br />
 5. In the Vitis IDE, select ***File > New > Platform Project*** to create a platform project.<br />
 6. In the Create New Platform Project dialog box, do the following:<br />
    a) Enter the project name. For this example, type ```zcu104_vai_custom```.<br />
