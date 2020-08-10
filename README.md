@@ -231,7 +231,7 @@ Dropbear is the default SSH tool in Vitis Base Embedded Platform. If OpenSSH is 
     a) Run ```petalinux-config -c rootfs```.<br /> 
     b) Go to ***Image Features***.<br /> 
     c) Disable ***ssh-server-dropbear*** and enable ***ssh-server-openssh***.<br /> 
-    ![ssh_settings.png](/pic_for_readme/ssh_settings.png)<br /><br />
+    ![ssh_settings.png](/pic_for_readme/openssh.png)<br /><br />
     d) Go to ***Filesystem Packages-> misc->packagegroup-core-ssh-dropbear*** and disable ***packagegroup-core-ssh-dropbear***.<br />
     e) Go to ***Filesystem Packages  -> console  -> network -> openssh*** and enable ***openssh***, ***openssh-sftp-server***, ***openssh-sshd***, ***openssh-scp***.<br />
 7. In rootfs config go to ***Image Features*** and enable ***package-management*** and ***debug_tweaks*** option, store the change and exit.<br />
