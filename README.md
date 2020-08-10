@@ -66,8 +66,8 @@ For Vitis AI platform, DPU is integrated as RTL kernel. To create a Vitis AI pla
    d) Click the Output Clocks tab.<br />
    e) Enable clk_out1 through clk_out3 in the Output Clock column, rename them as ```clk_100m```, ```clk_300m```, ```clk_600m``` and set the Requested Output Freq as follows:<br />
       - clk_100m to ```100``` MHz.<br />
-      - clk_200m to ```300``` MHz.<br />
-      - clk_400m to ```600``` MHz.<br />
+      - clk_300m to ```300``` MHz.<br />
+      - clk_600m to ```600``` MHz.<br />
 
    f) At the bottom of the dialog box set the ***Reset Type*** to ***Active Low***.<br />
    g) Click ***OK*** to close the dialog.<br />
