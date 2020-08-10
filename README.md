@@ -157,7 +157,7 @@ set_property platform.default_output_type "sd_card" [current_project]
 get_property platform.default_output_type [current_project]
 ```
 11. In your Vivado project, use the ***Tcl console*** to ***navigate to the xsa_gen folder***, and run ```source ./xsa.tcl``` command.
-![run_xsa_tcl.png](/pic_for_readme/run_xsa_tcl.png)<br /><br />
+![run_xsa_tcl.png](/pic_for_readme/xsa.png)<br /><br />
 12. Right-click and select ***Validate Design*** on ***IP integrator diagram***<br />
 13. Create the HDL wrapper:<br />
     a. Right-click ***system.bd*** in the Block Design, Sources view and select Create HDL Wrapper.<br />
