@@ -72,7 +72,7 @@ For Vitis AI platform, DPU is integrated as RTL kernel. To create a Vitis AI pla
    f) At the bottom of the dialog box set the ***Reset Type*** to ***Active Low***.<br />
    g) Click ***OK*** to close the dialog.<br />
   The settings should like below:<br />
-  ![clock_settings.png](/pic_for_readme/clock_settings.png)<br />
+  ![clock_wizard.png](/pic_for_readme/clock_settings.png)<br />
 ***Note: So now we have set up the clock system for our design. This clock wizard use the pl_clk as input clock and geneatate clocks needed for the whole logic design. In this simple design I would like to use 100MHz clock as the axi_lite control bus clock, 300MHz clock as DPU AXI interface clock and 600MHz as DPU core clock. You can just modifiy these clocks as you like and remember we should "tell" Vitis what clock we can use. Let's do that later.(And after creating this example I learn that the Vitis AI DPU can only have 2 clock domains and the axi_lite control bus and DPU AXI interface share same clock. So the 100MHz clock can't be used as axi_lite control bus for DPU now.)***<br><br />
 
 7. Add the Processor System Reset blocks:<br />
