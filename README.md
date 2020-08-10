@@ -354,7 +354,7 @@ Bif file:
 Image:
     Browse to zcu104_dpu_pkg/pfm/boot and click OK.
 ```
-![vitis_linux_config.png](/pic_for_readme/vitis_linux_config.png)<br /><br />
+![vitis_linux_config.png](/pic_for_readme/workpace_setting.png)<br /><br />
 11. Click ***zcu104_vai_custom*** project in the Vitis Explorer view, click the ***Build*** button to generate the platform.
 ![build_vitis_platform.png](/pic_for_readme/build_vitis_platform.png)<br /><br />
 ***Note: The generated platform is placed in the export directory. BSP and source files are also provided for re-building the FSBL and PMU if desired and are associated with the platform. The platform is ready to be used for application development.***<br />
