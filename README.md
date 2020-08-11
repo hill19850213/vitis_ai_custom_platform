@@ -178,6 +178,9 @@ A Vitis platform requires software components. For Linux, the PetaLinux tools ar
 1. source <petaLinux_tool_install_dir>/settings.sh<br />
 2. Create a PetaLinux project named ***zcu104_custom_plnx*** and configure the hw with the XSA file we created before:<br />
 ```petalinux-create --type project --template zynqMP --name zcu104_custom_plnx```<br />
+```#if you have bsp, you can load your bsp directly```<br />
+```petalinux-create -t project -s <your-bsp-path> -n zcu104_custom_plnx```<br />
+After creating the petalinux project, you can import XSA file to the petalinux project<br />
 ```cd zcu104_custom_plnx```<br />
 ```petalinux-config --get-hw-description=<you_vivado_design_dir>/xsa_gen/```<br />
 3. A petalinux-config menu would be launched, select ***DTG Settings->MACHINE_NAME***, modify it to ```zcu104-revc```.<br />
@@ -224,7 +227,7 @@ CONFIG_packagegroup-petalinux-v4lutils
 CONFIG_packagegroup-petalinux-matchbox
 ```
 5. Run ```petalinux-config -c rootfs``` and select ***user packages***, select name of rootfs all the libraries listed above, save and exit.
-![petalinux_rootfs.png](/pic_for_readme/rootfs.png)<br /><br />
+![petalinux_rootfs.png](/pic_for_readme/rootfs_dpu.png)<br /><br />
 
 6. Enable OpenSSH and disable dropbear<br /> 
 Dropbear is the default SSH tool in Vitis Base Embedded Platform. If OpenSSH is used to replace Dropbear, it could achieve 4x times faster data transmission speed (tested on 1Gbps Ethernet environment). Since Vitis-AI applications may use remote display feature to show machine learning results, using OpenSSH can improve the display experience.<br /> 
