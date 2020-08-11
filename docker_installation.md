@@ -30,7 +30,42 @@ Server: Docker Engine - Community
   OS/Arch:          linux/amd64
   Experimental:     false
 ```
+4. Add user to docker group, $user is your user name<br />
+```
+sudo usermod -aG docker $USER
 
+For example:
+sudo usermod -aG docker hill213
+```
+5.Install NVIDIA Docker Runtime and some docker settings are need to configuration<br />
+```
+sudo apt-get install nvidia-container-runtime
+
+##Systemd drop-in file
+sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo gedit /etc/systemd/system/docker.service.d/override.conf
+#Write the below setting tooverride.conf
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd --host=fd:// --add-runtime=nvidia=/usr/bin/nvidia-container-runtime
+##
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+##Daemon configuration file
+sudo gedit /etc/docker/daemon.json
+#Write the below setting to daemon.json
+{
+    "runtimes": {
+        "nvidia": {
+            "path": "/usr/bin/nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    }
+}
+##
+sudo pkill -SIGHUP dockerd
+```
 
 
 ## Reference<br />
