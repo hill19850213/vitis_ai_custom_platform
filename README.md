@@ -356,7 +356,7 @@ Image:
 ```
 ![vitis_linux_config.png](/pic_for_readme/workspace_setting.png)<br /><br />
 11. Click ***zcu104_vai_custom*** project in the Vitis Explorer view, click the ***Build*** button to generate the platform.
-![build_vitis_platform.png](/pic_for_readme/build_vitis_platform.png)<br /><br />
+![build_vitis_platform.png](/pic_for_readme/build_project.png)<br /><br />
 ***Note: The generated platform is placed in the export directory. BSP and source files are also provided for re-building the FSBL and PMU if desired and are associated with the platform. The platform is ready to be used for application development.***<br />
 
 ## Prepare for the DPU Kernel<br /><br />
@@ -475,6 +475,9 @@ Or go to your Vitis application folder use command ```find -name *.hwh``` to sea
 2. Copy the ***ref_files/Tool-Example*** folder provided by this Github repository to your Vitis AI download directory.<br />
 3. Copy this HWH file into ***<Vitis-AI-download_directory>/Tool-Example*** folder.<br />
 4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.<br />
+```
+./docker_run.sh xilinx/vitis-ai-gpu:latest
+```
 5. Use following command to activate TensorFlow tool conda environment:<br />
 ```
 conda activate vitis-ai-tensorflow
