@@ -178,7 +178,7 @@ A Vitis platform requires software components. For Linux, the PetaLinux tools ar
 1. source <petaLinux_tool_install_dir>/settings.sh<br />
 2. Create a PetaLinux project named ***zcu104_custom_plnx*** and configure the hw with the XSA file we created before:<br />
 ```petalinux-create --type project --template zynqMP --name zcu104_custom_plnx```<br />
-```#if you have bsp, you can load your bsp directly```<br />
+#Note:If you have bsp, you can load your bsp directly<br />
 ```petalinux-create -t project -s <your-bsp-path> -n zcu104_custom_plnx```<br />
 After creating the petalinux project, you can import XSA file to the petalinux project<br />
 ```cd zcu104_custom_plnx```<br />
