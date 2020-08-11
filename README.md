@@ -474,7 +474,7 @@ hineon
 Or go to your Vitis application folder use command ```find -name *.hwh``` to search for the file.<br />
 2. Copy the ***ref_files/Tool-Example*** folder provided by this Github repository to your Vitis AI download directory.<br />
 3. Copy this HWH file into ***<Vitis-AI-download_directory>/Tool-Example*** folder.<br />
-4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.<br />
+4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.(If you don't have docker, you can refer to the installation guide)<br />
 ```
 ./docker_run.sh xilinx/vitis-ai-gpu:latest
 ```
@@ -483,9 +483,9 @@ Or go to your Vitis application folder use command ```find -name *.hwh``` to sea
 conda activate vitis-ai-tensorflow
 ```
 6. Go to ***/workspace/Tool-Example*** folder and run ```dlet -f ./system.hwh```.<br />
-You should get the running log like below:
+You should get the running log as below:
 ```
-(vitis-ai-tensorflow) wuxian@wuxian-Ubuntu1804:/workspace/Tool-Example$ dlet -f ./system.hwh 
+(vitis-ai-tensorflow) hill213@hill213-pc:/workspace/Tool-Example$ dlet -f ./system.hwh 
 [DLet]Generate DPU DCF file dpu-06-18-2020-12-00.dcf successfully.
 ```
 The DCF file name should be associated with the time and date you generating this file.<br />
