@@ -474,7 +474,7 @@ hineon
 Or go to your Vitis application folder use command ```find -name *.hwh``` to search for the file.<br />
 2. Copy the ***ref_files/Tool-Example*** folder provided by this Github repository to your Vitis AI download directory.<br />
 3. Copy this HWH file into ***<Vitis-AI-download_directory>/Tool-Example*** folder.<br />
-4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.(If you don't have docker, you can refer to the installation guide)<br />
+4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.(If you don't have docker, you can refer to the [docker_installation.md](https://github.com/hill19850213/vitis_ai_custom_platform_v1.2/blob/master/docker_installation.md)<br />
 ```
 ./docker_run.sh xilinx/vitis-ai-gpu:latest
 ```
