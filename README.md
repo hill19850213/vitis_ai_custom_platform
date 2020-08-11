@@ -1,6 +1,3 @@
-***Need to keep master unmodified for VAI1.1 publish. So create this tmp repository***<br />
-***Would merge back to https://github.com/gewuek/vitis_ai_custom_platform_flow when it is available for editing***<br /><br />
-
 # Vitis AI Custom Platform Development<br /><br />
 1. Introduction to Vitis Acceleration Platform<br />
 2. Create the Vivado Hardware Component<br />
