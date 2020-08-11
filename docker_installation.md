@@ -34,7 +34,7 @@ Server: Docker Engine - Community
 ```
 sudo usermod -aG docker $USER
 
-For example:
+#For example:
 sudo usermod -aG docker hill213
 ```
 5.Install NVIDIA Docker Runtime and some docker settings are need to configuration<br />
