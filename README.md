@@ -372,7 +372,7 @@ Image:
 6. Export SDX_PLATFORM with the directory of the custom platform xpfm file which you created before. Here in my project it would be: ```export SDX_PLATFORM=/home/zcu104_dpu_pkg/zcu104_vai_custom/export/zcu104_vai_custom/zcu104_vai_custom.xpfm```. Remember now this custom platform name is ***zcu104_vai_custom***.<br />
 7. Navigate to the copy of the ***DPU-TRD*** folder, then go to the ***./prj/Vitis*** folder.<br />
 There are 2 files can be used to modify the DPU settings: The ***config_file/prj_config*** file is for DPU connection in Vitis project and the dpu_conf.vh is for other DPU configurations. Here we would modify the prj_config so that 2 DPU cores are enabled. And then we modify dpu_conf.vh as [DPU-TRD readme](https://github.com/Xilinx/Vitis-AI/blob/v1.2/DPU-TRD/README.md) suggested.<br />
-8. Modify the ***config_file/prj_config*** like below:<br />
+8. [zcu104]Modify the ***config_file/prj_config*** like below:<br />
 ```
 
 [clock]
@@ -403,7 +403,40 @@ prop=run.impl_1.strategy=Performance_ExploreWithRemap
 #param=place.runPartPlacer=0
 
 ```
-9. Modify dpu_conf.vh from:<br />
+For zu6eg, Modify the ***config_file/prj_config*** like below:<br />
+```
+
+[clock]
+
+id=0:DPUCZDX8G_1.aclk
+id=1:DPUCZDX8G_1.ap_clk_2
+id=0:DPUCZDX8G_2.aclk
+id=1:DPUCZDX8G_2.ap_clk_2
+id=0:sfm_xrt_top_1.aclk
+
+[connectivity]
+
+sp=DPUCZDX8G_1.M_AXI_GP0:LPD
+sp=DPUCZDX8G_1.M_AXI_HP0:HP0
+sp=DPUCZDX8G_1.M_AXI_HP2:HP1
+sp=DPUCZDX8G_2.M_AXI_GP0:LPD
+sp=DPUCZDX8G_2.M_AXI_HP0:HP2
+sp=DPUCZDX8G_2.M_AXI_HP2:HP3
+sp=sfm_xrt_top_1.M_AXI:HPC1
+
+[advanced]
+misc=:solution_name=link
+#param=compiler.addOutputTypes=sd_card
+
+#param=compiler.skipTimingCheckAndFrequencyScaling=1
+
+[vivado]
+#prop=run.impl_1.strategy=Performance_ExploreWithRemap
+prop=run.impl_1.strategy=Performance_Explore
+#param=place.runPartPlacer=0
+
+```
+9. [zcu104]Modify dpu_conf.vh from:<br />
 ```
 `define URAM_DISABLE 
 `define RAM_USAGE_LOW
@@ -412,6 +445,11 @@ to<br />
 ```
 `define URAM_ENABLE 
 `define RAM_USAGE_HIGH
+```
+Keep original dpu_conf.vh setting, when your part is zu6eg<br />
+```
+`define URAM_DISABLE 
+`define RAM_USAGE_LOW
 ```
 
 10. Generate the XO file by typing: ```make binary_container_1/dpu.xo DEVICE=zcu104_vai_custom```.<br />
