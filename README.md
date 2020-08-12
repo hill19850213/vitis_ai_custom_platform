@@ -15,7 +15,7 @@ The Vivado Design Suite is used to generate XSA containing a few additional IP b
 For Vitis AI platform, DPU is integrated as RTL kernel. To create a Vitis AI platform on MPSoC and run ConvNet on that, you need to create a Vivado HW platform, a PetaLinux SW platform, a Vitis platform which contains both the HW/SW platform you created. Then create a Vitis application based on this Vitis platform, import DPU kernel & ARM deployment code and build the Vitis application to be a HW-SW cowork design. Vitis would generate a SD card folder as output which would contain all the files needed to boot up from a target board. In the meanwhile to cross-compile the application and run it on board you may need Vitis AI library and DNNDK, you should install them both on the host and target board.<br />
 
 ## Create the Vivado Hardware Component and Generate XSA<br /><br />
-1. Source <Vitis_Install_Directory>/settings64.sh, and call Vivado out by typing "vivado" in the console.<br />
+1. Source <Vitis_Install_Directory>/settings64.sh, and run the Vivado by typing "vivado" in the console.<br />
 2. Create a Vivado project named zcu104_custom_platform.<br />
    a) Select ***File->Project->New***.<br />
    b) Click ***Next***.<br />
@@ -53,8 +53,11 @@ For Vitis AI platform, DPU is integrated as RTL kernel. To create a Vitis AI pla
    f) Click OK.<br />
    g) Confirm that the IP block interfaces were removed from the Zynq UltraScale+ MPSoC symbol in your block design.<br />
    ![hp_removed.png](/pic_for_readme/hp_removed.png)<br />
+   h) [optional] If you use custom board, you should do another settings(I/O , Clock, ddr4) to meet with board condition.
   
-***Note: This is a little different from traditional Vivado design flow. When trying to make AXI interfaces available in Vitis design you should disable these interfaces at Vivado IPI platform and enable them at platform interface properties. We will show you how to do that later***<br><br />
+***Note 1: This is a little different from traditional Vivado design flow. When trying to make AXI interfaces available in Vitis design you should disable these interfaces at Vivado IPI platform and enable them at platform interface properties. We will show you how to do that later***<br><br />
+
+***Note 2: For custom board, you can refer to DB2785 or DB2857***<br><br />
 
 6. Add clock block:<br />
    a) Right click Diagram view and select ***Add IP***.<br />
