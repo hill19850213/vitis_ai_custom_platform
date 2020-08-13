@@ -403,7 +403,7 @@ prop=run.impl_1.strategy=Performance_ExploreWithRemap
 #param=place.runPartPlacer=0
 
 ```
-For zu6eg, Modify the ***config_file/prj_config*** like below:<br />
+For***zu6eg***, Modify the ***config_file/prj_config*** like below:<br />
 ```
 
 [clock]
@@ -472,7 +472,7 @@ If you have generated softmax.xo,  and  you can verify it as below path.<br />
 7. Right click on the ***src*** folder under your ***hello_dpu*** application  in the Expplorer window, and select "Import Sources"
 ![import_sources.png](/pic_for_readme/import_sources.png)<br /><br />
 8. Choose from directory ***<zcu104_dpu_pkg directory>/DPU-TRD/prj/Vitis/binary_container_1/*** as the target location, and import the ***dpu.xo*** file that we just created.<br />
-
+If you have softmax, you should also import the ***softmax.xo*** file that we just created.<br />
 9. Import sources again, and add the cpp, header and prj_config files from ***ref_files/src*** folder provided by this Git repository.<br />
 10. In the Explorer window double click the hello_dpu.prj file to open it, change the ***Active Build configuration*** from ***Emulation-SW*** to ***Hardware***.<br />
 11. Under Hardware Functions, click the lightning bolt logo to ***Add Hardware Function***.<br />
