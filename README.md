@@ -19,10 +19,10 @@ For Vitis AI platform, DPU is integrated as RTL kernel. To create a Vitis AI pla
 2. Create a Vivado project named zcu104_custom_platform.<br />
    a) Select ***File->Project->New***.<br />
    b) Click ***Next***.<br />
-   c) In Project Name dialog set Project name to ```zcu104_custom_platform```.<br />
+   c) In Project Name dialog set Project name to ```zcu104_custom_platform( or zu6eg_custom_platform)```.<br />
    d) Click ***Next***.<br />
    e) Leaving all the setting to default until you goto the Default Part dialog.<br />
-   f) Select ***Boards*** tab and then select ***Zynq UltraScale+ ZCU104 Evaluation Board***<br />
+   f) Select ***Boards*** tab and then select ***Zynq UltraScale+ ZCU104 Evaluation Board*** or select custom part ***zu6egffvc900-2***<br />
    g) Click ***Next***, and your project summary should like below:<br />
    ![vivado_project_summary.png](/pic_for_readme/vivado_project_summary.png)<br />
    h) Then click ***Finish***<br />
@@ -167,8 +167,10 @@ get_property platform.default_output_type [current_project]
 14. Right-click ***system.bd*** in the Block Design, Sources view and select ***Generate Output Products***.<br />
 15. Type the tcl command in tcl console like:<br />
 ```write_hw_platform -unified -force -file <your_vivado_project_dir>/xsa_gen/zcu104_custom_platform.xsa```<br />
+or
+```write_hw_platform -unified -force -file <your_vivado_project_dir>/xsa_gen/zu6eg_custom_platform.xsa```<br />
 If you use ***export Hardware*** function in Vivado GUI it would add ***-fixed*** option which would generate a XSA for traditional embedded platform which can't add DPU acceleration kernel here.
-16. Check the ***<your_vivado_project_dir>/xsa_gen*** folder, you should find the ***zcu104_custom_platform.xsa*** generated there.<br />
+16. Check the ***<your_vivado_project_dir>/xsa_gen*** folder, you should find the ***zcu104_custom_platform.xsa (or  zu6eg_custom_platform.xsa)*** generated there.<br />
 
 ***Now we finish the Hardware platform creation flow, then we should go to the Software platform creation***<br /><br />
 
@@ -176,7 +178,7 @@ If you use ***export Hardware*** function in Vivado GUI it would add ***-fixed**
 
 A Vitis platform requires software components. For Linux, the PetaLinux tools are invoked outside of the Vitis tools by the developer to create the necessary Linux image,Executable and Linkable Format (ELF) files, and sysroot with XRT support. Yocto or third-party Linux development tools can also be used as long as they produce the same Linux output products as PetaLinux. <br />
 1. source <petaLinux_tool_install_dir>/settings.sh<br />
-2. Create a PetaLinux project named ***zcu104_custom_plnx*** and configure the hw with the XSA file we created before:<br />
+2. Create a PetaLinux project named ***zcu104_custom_plnx (or zu6eg_custom_plnx)*** and configure the hw with the XSA file we created before:<br />
 ```petalinux-create --type project --template zynqMP --name zcu104_custom_plnx```<br />
 ***Note:If you have bsp, you can load your bsp directly***<br />
 ```petalinux-create -t project -s <your-bsp-path> -n zcu104_custom_plnx```<br />
