@@ -14,12 +14,12 @@ The Vivado Design Suite is used to generate XSA containing a few additional IP b
 ![vitis_acceleration_flow.PNG](/pic_for_readme/vitis_acceleration_flow.PNG)<br />
 For Vitis AI platform, DPU is integrated as RTL kernel. To create a Vitis AI platform on MPSoC and run ConvNet on that, you need to create a Vivado HW platform, a PetaLinux SW platform, a Vitis platform which contains both the HW/SW platform you created. Then create a Vitis application based on this Vitis platform, import DPU kernel & ARM deployment code and build the Vitis application to be a HW-SW cowork design. Vitis would generate a SD card folder as output which would contain all the files needed to boot up from a target board. In the meanwhile to cross-compile the application and run it on board you may need Vitis AI library and DNNDK, you should install them both on the host and target board.<br />
 
-## Create the Vivado Hardware Component and Generate XSA<br /><br />
+## Create the Vivado Hardware Component and Generate XSA(You can use zcu104 or custom board-zu6egffvc900-2)<br /><br />
 1. Source <Vitis_Install_Directory>/settings64.sh, and run the Vivado by typing "vivado" in the console.<br />
-2. Create a Vivado project named zcu104_custom_platform.<br />
+2. Create a Vivado project named zcu104_custom_platform or zu6eg_custom_platform .<br />
    a) Select ***File->Project->New***.<br />
    b) Click ***Next***.<br />
-   c) In Project Name dialog set Project name to ```zcu104_custom_platform( or zu6eg_custom_platform)```.<br />
+   c) In Project Name dialog set Project name to ```zcu104_custom_platform or zu6eg_custom_platform```.<br />
    d) Click ***Next***.<br />
    e) Leaving all the setting to default until you goto the Default Part dialog.<br />
    f) Select ***Boards*** tab and then select ***Zynq UltraScale+ ZCU104 Evaluation Board*** or select custom part ***zu6egffvc900-2***<br />
@@ -178,12 +178,16 @@ If you use ***export Hardware*** function in Vivado GUI it would add ***-fixed**
 
 A Vitis platform requires software components. For Linux, the PetaLinux tools are invoked outside of the Vitis tools by the developer to create the necessary Linux image,Executable and Linkable Format (ELF) files, and sysroot with XRT support. Yocto or third-party Linux development tools can also be used as long as they produce the same Linux output products as PetaLinux. <br />
 1. source <petaLinux_tool_install_dir>/settings.sh<br />
-2. Create a PetaLinux project named ***zcu104_custom_plnx (or zu6eg_custom_plnx)*** and configure the hw with the XSA file we created before:<br />
+2. Create a PetaLinux project named ***zcu104_custom_plnx or zu6eg_custom_plnx*** and configure the hw with the XSA file we created before:<br />
 ```petalinux-create --type project --template zynqMP --name zcu104_custom_plnx```<br />
+or 
+```petalinux-create --type project --template zynqMP --name zu6eg_custom_plnx```<br />
 ***Note:If you have bsp, you can load your bsp directly***<br />
 ```petalinux-create -t project -s <your-bsp-path> -n zcu104_custom_plnx```<br />
+or
+```petalinux-create -t project -s <your-bsp-path> -n zu6eg_custom_plnx```<br />
 After creating the petalinux project, you can import XSA file to the petalinux project<br />
-```cd zcu104_custom_plnx```<br />
+```cd zcu104_custom_plnx (or cd zu6eg_custom_plnx)```<br />
 ```petalinux-config --get-hw-description=<you_vivado_design_dir>/xsa_gen/```<br />
 3. A petalinux-config menu would be launched, select ***DTG Settings->MACHINE_NAME***, modify it to ```zcu104-revc```.<br />
 ***Note: If you are using a Xilinx development board it is recomended to modify the machine name so that the board configurations would be involved in the DTS auto-generation. Otherwise you would need to configure the associated settings(e.g. the PHY information DTS node) by yourself manually.***<br />
