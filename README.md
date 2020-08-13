@@ -441,12 +441,12 @@ prop=run.impl_1.strategy=Performance_Explore
 `define URAM_DISABLE 
 `define RAM_USAGE_LOW
 ```
-to<br />
+to below setting<br />
 ```
 `define URAM_ENABLE 
 `define RAM_USAGE_HIGH
 ```
-Keep original dpu_conf.vh setting, when your part is zu6eg<br />
+[zu6eg]Keep original dpu_conf.vh setting, when your part is zu6eg<br />
 ```
 `define URAM_DISABLE 
 `define RAM_USAGE_LOW
