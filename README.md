@@ -452,8 +452,14 @@ Keep original dpu_conf.vh setting, when your part is zu6eg<br />
 `define RAM_USAGE_LOW
 ```
 
-10. Generate the XO file by typing: ```make binary_container_1/dpu.xo DEVICE=zcu104_vai_custom```.<br />
-11. Verify if the XO file is generated here: ***<zcu104_dpu_pkg directory>/DPU-TRD/prj/Vitis/binary_container_1/dpu.xo***.<br />
+10. Generate the XO file by typing: <br />
+```make binary_container_1/dpu.xo DEVICE=zcu104_vai_custom```<br />
+If you enable softmax function in  DPU ip, you should also generate softmax.xo:<br />
+```make binary_container_1/softmax.xo DEVICE=zcu104_vai_custom```<br />
+11. Verify if the XO file is generated here: <br />
+***<zcu104_dpu_pkg directory>/DPU-TRD/prj/Vitis/binary_container_1/dpu.xo***.<br />
+If you have generated softmax.xo,  and  you can verify it as below path.<br />
+***<zcu104_dpu_pkg directory>/DPU-TRD/prj/Vitis/binary_container_1/softmax.xo***.<br />
 
 ## Create and Build a Vitis application
 1. Open Vitis workspace you were using before.<br />
@@ -466,6 +472,7 @@ Keep original dpu_conf.vh setting, when your part is zu6eg<br />
 7. Right click on the ***src*** folder under your ***hello_dpu*** application  in the Expplorer window, and select "Import Sources"
 ![import_sources.png](/pic_for_readme/import_sources.png)<br /><br />
 8. Choose from directory ***<zcu104_dpu_pkg directory>/DPU-TRD/prj/Vitis/binary_container_1/*** as the target location, and import the ***dpu.xo*** file that we just created.<br />
+
 9. Import sources again, and add the cpp, header and prj_config files from ***ref_files/src*** folder provided by this Git repository.<br />
 10. In the Explorer window double click the hello_dpu.prj file to open it, change the ***Active Build configuration*** from ***Emulation-SW*** to ***Hardware***.<br />
 11. Under Hardware Functions, click the lightning bolt logo to ***Add Hardware Function***.<br />
