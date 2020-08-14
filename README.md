@@ -295,8 +295,8 @@ Open ***project-spec/meta-user/recipes-bsp/u-boot/files/platform-top.h*** and ad
 cd images/linux
 petalinux-build --sdk
 ```
-***Note: We would store all the necessary files for Vitis platform creation flow. Here we name it ```zcu104_dpu_pkg ```. Then we create a pfm folder inside.***<br />
-13. Type ```./sdk.sh``` to install PetaLinux SDK, provide a full pathname to the output directory ***<full_pathname_to_zcu104_dpu_pkg>/pfm***(here in this example I use ***/home/zcu104_dpu_pkg/pfm***) and confirm.<br />
+***Note: We would store all the necessary files for Vitis platform creation flow. Here we name it ```zcu104_dpu_pkg ``` or ```zu6eg_dpu_pkg ```. Then we create a pfm folder inside.***<br />
+13. Type ```./sdk.sh``` to install PetaLinux SDK, provide a full pathname to the output directory ***<full_pathname_to_zcu104_dpu_pkg>/pfm*** or  ***<full_pathname_to_zu6eg_dpu_pkg>/pfm*** (here in this example I use ***/home/zcu104_dpu_pkg/pfm***) and confirm.<br />
 14. We would install Vitis AI library and DNNDK into this rootfs in the future.<br />
 15. After the PetaLinux build succeeds, the generated Linux software components are in the ***<your_petalinux_dir>/images/linux directory***. For our example, the ***images/linux*** directory contains the generated image and ELF files listed below. Copy these files to the ***<full_pathname_to_zcu104_dpu_pkg>/pfm/boot*** directory in preparation for running the Vitis platform creation flow:<br />
 ```
@@ -348,7 +348,7 @@ source /opt/xilinx/xrt/setup.sh
    d) Leave the checkmark selected to generate boot components.<br />
    e) Click ***Finish***.<br />
 9. In the Platform Settings view, observe the following:<br />
-   - The name of the Platform Settings view matches the platform project name of ***zcu104_vai_custom***.<br />
+   - The name of the Platform Settings view matches the platform project name of ***zcu104_vai_custom*** or ***zu6eg_vai_custom***(I use zcu104_vai_custom in this example here)<br />
    - A psu_cortexa53 device icon is shown, containing a Linux on psu_cortexa53 domain.<br />
    - A psu_cortexa53 device icon is shown, containing a zynqmp_fsbl BSP.<br />
    - A psu_pmu_0 device icon is shown, containing a zynqmp_pmufw BSP.<br />
