@@ -560,23 +560,23 @@ The DCF file name should be associated with the time and date you generating thi
 2. Connect SSH:<br />
    a) Run ```ifconfig``` to get the IP address, here we take ```172.16.75.189``` as example.<br />
    b) Using SSH terminal to connect ZCU104 with SSH: ```ssh -x root@172.16.75.189```, or use MobaXterm in Windows.<br />
-3. Mount SD card to mnt folder by running command: ```mount /dev/mmcblk0p1 /mnt```.<br />
-4. Go to the /mnt folder and create a new folder named "package":
+3. If system doesn't mount SD card , you should mount to mnt folder by running command: ```mount /dev/mmcblk0p1 /card```.<br />
+4. Go to the /card folder and create a new folder named "package":
 ```
-cd /mnt
+cd /card
 mkdir package
 ```
 5. Since this is a custom design the Vitis AI library, DNNDK and test images are not installed. We need to install them on board.<br />
-I would suggest you to refer to section "Setting Up the Target" of [Vitis AI library readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1-old1/Vitis-AI-Library/README.md) to install the Vitis AI library and refer to section "Setup Evaluation Board and run Vitis AI DNNDK samples" of [DNNDK example readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1-old1/mpsoc/README.md) to install DNNDK and test images. If you feel difficult to do that please follow the steps below:<br />
+I would suggest you to refer to section "Setting Up the Target" of [Vitis AI library readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/Vitis-AI-Library/README.md) to install the Vitis AI library and refer to section "Setup Evaluation Board and run Vitis AI DNNDK samples" of [DNNDK example readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/mpsoc/README.md) to install DNNDK and test images. If you feel difficult to do that please follow the steps below:<br />
    a) Download the Vitis AI Runtime 1.2.1 package [Vitis AI Runtime 1.2.1](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai-runtime-1.2.1.tar.gz)<br />
    b) Copy the vitis-ai-runtime-1.2.1.tar.gz from host to board with the following command running on host:<br />
    ```
    cd <path_to_vitis-ai-runtime-1.2.1.tar.gz>
-   scp vitis-ai-runtime-1.2.1.tar.gz 172.16.75.189:/mnt/package
+   scp vitis-ai-runtime-1.2.1.tar.gz 172.16.75.189:/card/package
    ```
    c) Untar the packet and install them one by one on target board:<br />
    ```
-   cd /mnt/package
+   cd /card/package
    tar -zxvf vitis-ai-runtime-1.2.1.tar.gz
    cd ./vitis-ai-runtime-1.2.1/aarch64/centos/
    rpm -ivh --force --ignoresize libunilog-1.2.0-r10.aarch64.rpm
@@ -594,24 +594,24 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    ```
    e) Install DNNDK package like below:<br />
    ```
-   cd /mnt/package
+   cd /card/package
    cp vitis-ai_v1.2_dnndk.tar.gz ~/
    cd ~/
    tar -zxvf vitis-ai_v1.2_dnndk.tar.gz
    cd vitis-ai_v1.2_dnndk/
    ./install.sh
    ```
-   g) Go back to ***/mnt/package*** folder and untar the dnndk example file:<br />
+   g) Go back to ***/card/package*** folder and untar the dnndk example file:<br />
    ```
-   cd /mnt/package
+   cd /card/package
    tar -zxvf vitis-ai_v1.2_dnndk_sample_img.tar.gz
    ```
 6. Go to the vitis_ai_dnndk_samples and run the hello_dpu application:<br />
 ```
-cd /mnt/package/vitis_ai_dnndk_samples
+cd /card/package/vitis_ai_dnndk_samples
 mkdir test
 cd test
-cp /mnt/hello_dpu ./
+cp /card/hello_dpu ./
 ./hello_dpu
 ```
 ***We store the hello_dpu to /mnt/package/vitis_ai_dnndk_samples/test folder to suit the relative path in my code, you can do that according to your code context. The hello_dpu is generated in Vitis application build and was copied to sd card from previous operation.***<br />
@@ -628,9 +628,9 @@ https://github.com/Xilinx/Vitis-AI-Tutorials/tree/Vitis-AI-Custom-Platform<br />
 ***Note: If you would like to try with one click creating VAI platform flow it is recommended to try with the official platform source code for*** [zcu102_dpu](https://github.com/Xilinx/Vitis_Embedded_Platform_Source/tree/master/Xilinx_Official_Platforms/zcu102_base) ***and*** [zcu104_dpu](https://github.com/Xilinx/Vitis_Embedded_Platform_Source/tree/master/Xilinx_Official_Platforms/zcu104_base)***.*** <br /><br /><br />
 
 ## More Information about Install and Set Vitis and XRT Environment<br />
-https://www.xilinx.com/html_docs/xilinx2019_2/vitis_doc/Chunk2027126153.html#zks1565446519267<br />
-https://www.xilinx.com/html_docs/xilinx2019_2/vitis_doc/pjr1542153622642.html<br />
-https://www.xilinx.com/html_docs/xilinx2019_2/vitis_doc/rbk1547656041291.html<br />
+https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/settingupvitisenvironment.html#zks1565446519267<br />
+https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/pjr1542153622642.html<br />
+https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/rbk1547656041291.html<br />
 
 
 
