@@ -614,7 +614,7 @@ cd test
 cp /card/hello_dpu ./
 ./hello_dpu
 ```
-***We store the hello_dpu to /mnt/package/vitis_ai_dnndk_samples/test folder to suit the relative path in my code, you can do that according to your code context. The hello_dpu is generated in Vitis application build and was copied to sd card from previous operation.***<br />
+***We store the hello_dpu to /card/package/vitis_ai_dnndk_samples/test folder to suit the relative path in my code, you can do that according to your code context. The hello_dpu is generated in Vitis application build and was copied to sd card from previous operation.***<br />
 7. You should see the result like below:<br />
 ![test_result.PNG](/pic_for_readme/test_result.PNG)<br /><br />
 
