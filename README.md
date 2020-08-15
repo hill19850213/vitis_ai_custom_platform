@@ -179,19 +179,19 @@ If you use ***export Hardware*** function in Vivado GUI it would add ***-fixed**
 A Vitis platform requires software components. For Linux, the PetaLinux tools are invoked outside of the Vitis tools by the developer to create the necessary Linux image,Executable and Linkable Format (ELF) files, and sysroot with XRT support. Yocto or third-party Linux development tools can also be used as long as they produce the same Linux output products as PetaLinux. <br />
 1. source <petaLinux_tool_install_dir>/settings.sh<br />
 2. Create a PetaLinux project named ***zcu104_custom_plnx or zu6eg_custom_plnx*** and configure the hw with the XSA file we created before:<br />
-```petalinux-create --type project --template zynqMP --name zcu104_custom_plnx```<br />
+```petalinux-create -t project --template zynqMP -n zcu104_custom_plnx```<br />
 or 
-```petalinux-create --type project --template zynqMP --name zu6eg_custom_plnx```<br />
+```petalinux-create -t project --template zynqMP -n zu6eg_custom_plnx```<br />
 ***Note:If you have bsp, you can load your bsp directly***<br />
 ```petalinux-create -t project -s <your-bsp-path> -n zcu104_custom_plnx```<br />
 or
 ```petalinux-create -t project -s <your-bsp-path> -n zu6eg_custom_plnx```<br />
 After creating the petalinux project, you can import XSA file to the petalinux project<br />
 ```cd zcu104_custom_plnx (or cd zu6eg_custom_plnx)```<br />
-```petalinux-config --get-hw-description=<you_vivado_design_dir>/xsa_gen/```<br />
+```petalinux-config --get-hw-description=<you_vivado_design_path>/xsa_gen/```<br />
 3. A petalinux-config menu would be launched, select ***DTG Settings->MACHINE_NAME***, modify it to ```zcu104-revc```.<br />
 ***Note: If you are using a Xilinx development board it is recomended to modify the machine name so that the board configurations would be involved in the DTS auto-generation. Otherwise you would need to configure the associated settings(e.g. the PHY information DTS node) by yourself manually.***<br />
-4. Add user packages by appending the CONFIG_x lines below to the <your_petalinux_project_dir>/project-spec/meta-user/conf/user-rootfsconfig file.<br />
+4. Add user packages by appending the CONFIG_x lines below to the <your_petalinux_project_path>/project-spec/meta-user/conf/user-rootfsconfig file.<br />
 Packages for base XRT support:<br />
 ```
 CONFIG_xrt
@@ -313,11 +313,11 @@ petalinux-build --sdk
  the_ROM_image:
  {
  	[fsbl_config] a53_x64
- 	[bootloader] <fsbl.elf>
- 	[pmufw_image] <pmufw.elf>
+ 	[bootloader] <fsbl_path>/fsbl.elf
+ 	[pmufw_image] <pmufw_path>/pmufw.elf
  	[destination_device=pl] <bitstream>
- 	[destination_cpu=a53-0, exception_level=el-3, trustzone] <bl31.elf>
- 	[destination_cpu=a53-0, exception_level=el-2] <u-boot.elf>
+ 	[destination_cpu=a53-0, exception_level=el-3, trustzone] <bl31_path>/bl31.elf
+ 	[destination_cpu=a53-0, exception_level=el-2] <u-boot_path>/u-boot.elf
  }
 ```
 ***Note: Now we prepare the HW platform and SW platform, next we would create a Vitis Platform.***
@@ -329,13 +329,13 @@ petalinux-build --sdk
 source <Vitis_Install_Directory>/settings64.sh
 source /opt/xilinx/xrt/setup.sh
 ```
-2. Go to the ***zcu104_dpu_pkg*** folder you created: ```cd <full_pathname_to_zcu104_dpu_pkg>```.<br />
+2. Go to the ***zcu104_dpu_pkg(or zu6eg_dpu_pkg)*** folder you created: ```cd <full_pathname_to_zcu104_dpu_pkg> (or cd <full_pathname_to_zu6eg_dpu_pkg>)```.<br />
 3. Launch Vitis by typing ```vits``` in the console.<br />
-4. Select ***zcu104_dpu_pkg*** folder as workspace directory.<br />
+4. Select ***zcu104_dpu_pkg(or zu6eg_dpu_pkg)*** folder as workspace directory.<br />
 ![vitis_launch.png](/pic_for_readme/workspace.png)<br /><br />
 5. In the Vitis IDE, select ***File > New > Platform Project*** to create a platform project.<br />
 6. In the Create New Platform Project dialog box, do the following:<br />
-   a) Enter the project name. For this example, type ```zcu104_vai_custom```.<br />
+   a) Enter the project name. For this example, type ```zcu104_vai_custom( or zu6eg_vai_custom)```.<br />
    b) Leave the checkbox for the default location selected.<br />
    c) Click ***Next***.<br />
 7. In the Platform Project dialog box, do the following:<br />
