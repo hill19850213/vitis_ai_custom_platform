@@ -486,8 +486,8 @@ The DCF file name should be associated with the time and date you generating thi
 ## Run Application on Board<br />
 1. Copy all the files from ***sd_card folder*** inside your Vitis application like ***<hello_dpu_application_directory>/Hardware/sd_card/*** to SD card, copy all the files under ***ref_files/boot_additional_files/*** provided by this Github repository to SD card, set ZCU104 to SD boot mode and boot up the board, connect the board with serial port.<br />
 2. Connect SSH:<br />
-   a) Run ```ifconfig``` to get the IP address, here we take ```172.16.75.189``` as example.<br />
-   b) Using SSH terminal to connect ZCU104 with SSH: ```ssh -x root@172.16.75.189```, or use MobaXterm in Windows.<br />
+   a) Run ```ifconfig``` to get the IP address, here we take ```192.168.17.2``` as example.<br />
+   b) Using SSH terminal to connect ZCU104 with SSH: ```ssh -x root@192.168.17.2```, or use MobaXterm in Windows.<br />
 3. If system doesn't mount SD card , you should mount to mnt folder by running command: ```mount /dev/mmcblk0p1 /card```.<br />
 4. Go to the /card folder and create a new folder named "package":
 ```
@@ -500,7 +500,7 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    b) Copy the vitis-ai-runtime-1.2.1.tar.gz from host to board with the following command running on host:<br />
    ```
    cd <path_to_vitis-ai-runtime-1.2.1.tar.gz>
-   scp vitis-ai-runtime-1.2.1.tar.gz 172.16.75.189:/card/package
+   scp vitis-ai-runtime-1.2.1.tar.gz 192.168.17.2:/card/package
    ```
    c) Untar the packet and install them one by one on target board:<br />
    ```
@@ -517,8 +517,8 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
 
    d) Download the package [vitis-ai_v1.2_dnndk.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk.tar.gz) and package [vitis-ai_v1.2_dnndk_sample_img.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk_sample_img.tar.gz), copy them to board:<br />
    ```
-   scp vitis-ai_v1.2_dnndk.tar.gz root@172.16.75.189:/mnt/package
-   scp vitis-ai_v1.2_dnndk_sample_img.tar.gz root@172.16.75.189:/mnt/package
+   scp vitis-ai_v1.2_dnndk.tar.gz root@192.168.17.2:/card/package
+   scp vitis-ai_v1.2_dnndk_sample_img.tar.gz root@192.168.17.2:/card/package
    ```
    e) Install DNNDK package like below:<br />
    ```
