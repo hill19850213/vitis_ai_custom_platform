@@ -434,8 +434,6 @@ If you have softmax, you should also import the ***softmax.xo*** file that we ju
 10. In the Explorer window double click the hello_dpu.prj file to open it, change the ***Active Build configuration*** from ***Emulation-SW*** to ***Hardware***.<br />
 11. Under Hardware Functions, click the lightning bolt logo to ***Add Hardware Function***.<br />
 ![add_hardware_function.png](/pic_for_readme/add_hardware_function.png)<br /><br />
-For dpu and softmax, the configuration is a below:<br />
-![add_hardware_function.png](/pic_for_readme/add_softmax.png)<br /><br />
 12. Select the "DPUCZDX8G" included as part of the dpu.xo file that we included earlier.<br />
 13. Click on binary_container_1 to change the name to dpu.<br />
 14. Click on ***DPUCZDX8G*** and change the ***Compute Units*** from ```1``` to ```2``` because we have 2 dpu cores involved.<br />
