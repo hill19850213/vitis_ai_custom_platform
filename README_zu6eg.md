@@ -334,7 +334,7 @@ Bif file:
 Image:
     Browse to zu6eg_dpu_pkg/pfm/boot and click OK.
 ```
-![vitis_linux_config.png](/pic_for_readme/workspace_setting.png)<br /><br />
+![vitis_linux_config.png](/pic_for_readme/workspace_setting_6eg.png)<br /><br />
 11. Click ***zu6eg_vai_custom*** project in the Vitis Explorer view, click the ***Build*** button to generate the platform.
 ![build_vitis_platform.png](/pic_for_readme/build_project.png)<br /><br />
 ***Note: The generated platform is placed in the export directory. BSP and source files are also provided for re-building the FSBL and PMU if desired and are associated with the platform. The platform is ready to be used for application development.***<br />
