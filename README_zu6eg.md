@@ -159,7 +159,7 @@ A Vitis platform requires software components. For Linux, the PetaLinux tools ar
 ```petalinux-create -t project -s <your-bsp-path> -n zu6eg_custom_plnx```<br />
 After creating the petalinux project, you can import XSA file to the petalinux project<br />
 ```cd zu6eg_custom_plnx```<br />
-```petalinux-config --get-hw-description=<you_vivado_design_path>/xsa_gen/```<br />
+```petalinux-config --get-hw-description=<your_vivado_design_path>/xsa_gen/```<br />
 3. A petalinux-config menu would be launched, select ***DTG Settings->MACHINE_NAME***, modify it to ```zcu104-revc```.<br />
 ***Note: If you are using a Xilinx development board it is recomended to modify the machine name so that the board configurations would be involved in the DTS auto-generation. Otherwise you would need to configure the associated settings(e.g. the PHY information DTS node) by yourself manually.***<br />
 4. Add user packages by appending the CONFIG_x lines below to the <your_petalinux_project_path>/project-spec/meta-user/conf/user-rootfsconfig file.<br />
