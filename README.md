@@ -53,11 +53,8 @@ For Vitis AI platform, DPU is integrated as RTL kernel. To create a Vitis AI pla
    f) Click OK.<br />
    g) Confirm that the IP block interfaces were removed from the Zynq UltraScale+ MPSoC symbol in your block design.<br />
    ![hp_removed.png](/pic_for_readme/hp_removed.png)<br />
-   h) [optional] If you use custom board, you should do another settings(I/O , Clock, ddr4) to meet with board condition.
   
-***Note 1: This is a little different from traditional Vivado design flow. When trying to make AXI interfaces available in Vitis design you should disable these interfaces at Vivado IPI platform and enable them at platform interface properties. We will show you how to do that later***<br><br />
-
-***Note 2: For custom board, you can refer to DB2785 or DB2857***<br><br />
+***Note 1: This is a little different from traditional Vivado design flow. When trying to make AXI interfaces available in Vitis design you should disable these interfaces at Vivado IPI platform and enable them at platform interface properties. The following steps will show you how to do that later***<br><br />
 
 6. Add clock block:<br />
    a) Right click Diagram view and select ***Add IP***.<br />
@@ -121,7 +118,7 @@ You can provide kernel interrupt support by adding an AXI interrupt controller t
    ```set_property PFM.IRQ {intr {id 0 range 32}} [get_bd_cells /axi_intc_0]```<br />
 ***The IPI design connection would like below:***<br />
 ![ipi_fully_connection.png](/pic_for_readme/ipi_designn.png)<br /><br />
-***Note: Now we have finished the IPI design input, let's set some platform parameters and generate the DSA***<br /><br /><br />
+***Note: Now we have finished the IPI design , let's set some platform parameters and generate the XSA***<br /><br /><br />
 
 ## Configuring Platform Interface Properties<br /><br />
 1. Click ***Window->Platform interfaces***, and then click ***Enable platform interfaces*** link to open the ***Platform Interfaces*** Window.<br />
@@ -158,7 +155,7 @@ get_property platform.default_output_type [current_project]
 ```
 11. In your Vivado project, use the ***Tcl console*** to ***navigate to the xsa_gen folder***, and run ```source ./xsa.tcl``` command.
 ![run_xsa_tcl.png](/pic_for_readme/xsa.png)<br /><br />
-12. Right-click and select ***Validate Design*** on ***IP integrator diagram***<br />
+12. Right-click and select ***Validate Design*** on ***IP integrator diagram***(For AXI intc critical warning, you can ignore it safely)<br />
 13. Create the HDL wrapper:<br />
     a. Right-click ***system.bd*** in the Block Design, Sources view and select Create HDL Wrapper.<br />
     b. Select Let Vivado manage wrapper and ***auto-update***.<br />
@@ -178,7 +175,7 @@ A Vitis platform requires software components. For Linux, the PetaLinux tools ar
 1. source <petaLinux_tool_install_dir>/settings.sh<br />
 2. Create a PetaLinux project named ***zcu104_custom_plnx*** and configure the hw with the XSA file we created before:<br />
 ```petalinux-create -t project --template zynqMP -n zcu104_custom_plnx```<br />
-***Note:If you have bsp, you can load your bsp directly***<br />
+***Note:If you have bsp, you can import your bsp directly***<br />
 ```petalinux-create -t project -s <your-bsp-path> -n zcu104_custom_plnx```<br />
 After creating the petalinux project, you can import XSA file to the petalinux project<br />
 ```cd zcu104_custom_plnx ```<br />
