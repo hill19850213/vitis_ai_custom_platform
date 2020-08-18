@@ -203,7 +203,7 @@ CONFIG_packagegroup-petalinux-x11
 CONFIG_packagegroup-petalinux-v4lutils
 CONFIG_packagegroup-petalinux-matchbox
 ```
-5. Run ```petalinux-config -c rootfs``` and select ***user packages***, select name of rootfs all the libraries listed above, save and exit.
+5. Run ```petalinux-config -c rootfs``` and  then select ***user packages***.On this page, you sould select the hightlight libraries as below , and then save and exit.
 ![petalinux_rootfs.png](/pic_for_readme/rootfs_dpu.png)<br /><br />
 
 6. Enable OpenSSH and disable dropbear<br /> 
@@ -254,13 +254,13 @@ Dropbear is the default SSH tool in Vitis Base Embedded Platform. If OpenSSH is 
 ```
 
 10. Modify the u-boot settings:<br />
-Because we didn't use SD card to store the rootfs files. So that u-boot need to load a large image. We need to modify the u-boot so that it can load larger image.
+We use initramfs method to make the rootfs files, and then we need to modify the u-boot so that it can load larger image.
 Open ***project-spec/meta-user/recipes-bsp/u-boot/files/platform-top.h*** and add:<br />
 ```
 #define CONFIG_SYS_BOOTM_LEN 0x80000000
 #undef CONFIG_SYS_BOOTMAPSZ
 ```
-11. From within the PetaLinux project (petalinux), type ```petalinux-build``` to build the project.<br />
+11. After setting all the petalinux configuration, type ```petalinux-build``` to build the project.<br />
 12. Create a sysroot self-installer for the target Linux system:<br />
 ```
 cd images/linux
