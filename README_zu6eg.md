@@ -341,7 +341,7 @@ Image:
 
 ## Prepare for the DPU Kernel<br /><br />
 
-1. Download Vitis AI by calling command ```git clone https://github.com/Xilinx/Vitis-AI.git```.<br />
+1. Download Vitis AI by git command ```git clone https://github.com/Xilinx/Vitis-AI.git```.<br />
 2. Navigate to the repository:```cd Vitis-AI```, set the tag to proper tag(here we use ***v1.2.1***) by typing: ```git checkout v1.2.1```.<br />
 3. If you don't want to destroy the TRD reference design. Copy ***DPU-TRD*** folder into another directory. For example I would copy that into my ***zu6eg_dpu_pkg*** folder: ```cp -r DPU-TRD /home/zu6eg_dpu_pkg/```<br />
 4. Source Vitis tools setting sh file: ```source <vitis install path>/Vitis/2020.1/settings64.sh```.<br />
