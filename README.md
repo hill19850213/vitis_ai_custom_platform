@@ -311,6 +311,7 @@ petalinux-build --sdk
  	[destination_cpu=a53-0, exception_level=el-2] <u-boot_path>/u-boot.elf
  }
 ```
+***Note: There is  no bitstream path now,you can leave there ***
 ***Note: Now we prepare the HW platform and SW platform, next we would create a Vitis Platform.***
 
 ## Create the Vitis Platform<br /><br />
