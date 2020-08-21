@@ -499,6 +499,7 @@ The DCF file name should be associated with the time and date you generating thi
 11. Right click on the ***hello_dpu*** project folder in Vitis select ***C/C++ Building Settings**.<br />
 12. In ***Propery for Hello_DPU*** dialog box, select ***C/C++ Build->Settings->Tool Settings->GCC Host Linker->Miscellaneous->Other objects***, add a new object: ```"${workspace_loc:/${ProjName}/src/dpu_resnet50_0.elf}"```, click ***Apply and Close***.<br />
 13. Right click the ***hello_dpu*** project folder and select ***Build Project***<br />
+![zcu104_dpu_elf.PNG](/pic_for_readme/zcu104_dpu_elf.PNG)<br /><br />
 ***Now you should get an updated hello_dpu with a size of about 20MB(the ConvNet model is involved).***<br />
 
 ## Run Application on Board<br />
