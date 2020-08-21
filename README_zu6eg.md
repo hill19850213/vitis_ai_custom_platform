@@ -279,7 +279,7 @@ petalinux-build --sdk
     - boot.scr
 ```
 16. Add a BIF file (linux.bif) to the ***<full_pathname_to_zu6eg_dpu_pkg>/pfm/boot*** directory with the contents shown below. The file names should match the contents of the boot directory. The Vitis tool expands these pathnames relative to the sw directory of the platform at v++ link time or when generating an SD card. However, if the bootgen command is used directly to create a BOOT.BIN file from a BIF file, full pathnames in the BIF are necessary. Bootgen does not expand the names between the <> symbols.<br />
-***Note: There is  no bitstream path now,you can leave there .***<br />
+***Note: There is  no bitstream path now,you can ignore here .***<br />
 ```
 /* linux */
  the_ROM_image:
