@@ -453,7 +453,10 @@ hineon
 ***Now we install both the VAI lib and DNNDK packages into the rootfs set as Vitis sysroot, then we can build application on Vitis.***<br />
 
 21. Right click the ***hello_dpu*** project folder and select ***Build Project***<br />
-
+22. Generate Boot Image<br />
+![zu6eg_boot_gen.png](/pic_for_readme/zu6eg_boot_gen.png)<br />
+When you load bif, the bitstram path is loaded by tool<br />
+![zu6eg_boot_gen.png](/pic_for_readme/zu6eg_boot_gen_bif.png)<br />
 ## Prepare the Network Deployment File<br />
 
 1. Find HWH file from your Vitis application folder***hello_dpu/Hardware/dpu.build/link/vivado/vpl/prj/prj.srcs/sources_1/bd/system/hw_handoff/system.hwh***<br />
