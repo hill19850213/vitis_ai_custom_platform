@@ -470,6 +470,11 @@ hineon
 ***Now we install both the VAI lib and DNNDK packages into the rootfs set as Vitis sysroot, then we can build application on Vitis.***<br />
 
 21. Right click the ***hello_dpu*** project folder and select ***Build Project***<br />
+22. Generate Boot Image<br />
+![zcu104 _boot_gen.png](/pic_for_readme/zcu104 _boot_gen.png)<br />
+When you load bif, the bitstram path is loaded by tool<br />
+![zcu104 _boot_gen.png](/pic_for_readme/zcu104 _boot_gen_bif.png)<br />
+
 
 ## Prepare the Network Deployment File<br />
 
