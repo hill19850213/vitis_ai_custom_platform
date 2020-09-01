@@ -223,8 +223,8 @@ CONFIG_packagegroup-petalinux-x11
 CONFIG_packagegroup-petalinux-v4lutils
 CONFIG_packagegroup-petalinux-matchbox
 ```
-5. Run ```petalinux-config -c rootfs``` and  then select ***user packages***.On this page, you sould select the hightlight libraries as below , and then save and exit.
-![petalinux_rootfs.png](/pic_for_readme/rootfs_dpu.png)<br /><br />
+5. Run ```petalinux-config -c rootfs``` and  then select ***user packages***.On this page, you sould select the libraries as below , and then save and exit.
+![petalinux_rootfs.png](/pic_for_readme/user_package.png)<br /><br />
 
 6. Enable OpenSSH and disable dropbear<br /> 
 Dropbear is the default SSH tool in Vitis Base Embedded Platform. If OpenSSH is used to replace Dropbear, it could achieve 4x times faster data transmission speed (tested on 1Gbps Ethernet environment). Since Vitis-AI applications may use remote display feature to show machine learning results, using OpenSSH can improve the display experience.<br /> 
