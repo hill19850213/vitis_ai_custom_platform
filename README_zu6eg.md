@@ -540,7 +540,11 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    cd /card/package
    tar -zxvf vitis-ai_v1.2_dnndk_sample_img.tar.gz
    ```
-6. Go to the vitis_ai_dnndk_samples and run the hello_dpu application:<br />
+6.If you use your own system image, you may need to copy dpu.xclbin to /usr/lib first
+```
+cp /media/sd-mmcblk0p1/dpu.xclbin /usr/lib/
+```
+7. Go to the vitis_ai_dnndk_samples and run the hello_dpu application:<br />
 ```
 cd /card/package/vitis_ai_dnndk_samples
 mkdir test
@@ -549,7 +553,7 @@ cp /card/hello_dpu ./
 ./hello_dpu
 ```
 ***We store the hello_dpu to /card/package/vitis_ai_dnndk_samples/test folder to suit the relative path in my code, you can do that according to your code context. The hello_dpu is generated in Vitis application build and was copied to sd card from previous operation.***<br />
-7. You should see the result like below:<br />
+8. You should see the result like below:<br />
 ![test_result.PNG](/pic_for_readme/test_result.PNG)<br /><br />
 
 ***Please refer to UG1144 if you would like to implement a ext4 rootfs.<br />***
