@@ -408,7 +408,6 @@ If you have generated softmax.xo,  and  you can verify it as below path.<br />
 5. Set Domain to ***linux on psu_cortexa53***, set ***Sys_root path*** to ```<full_pathname_to_zu6eg_dpu_pkg>/pfm/sysroots/aarch64-xilinx-linux```(as you created by running ***sdk.sh***), keep the ***Kernel Image*** setting in default and click ***next***.<br />
 6. Select ***System Optimization Examples -> Empty application*** and click ***finish*** to generate the application.<br />
 7. Right click on the ***src*** folder under your ***hello_dpu*** application  in the Expplorer window, and select "Import Sources"
-![import_sources.png](/pic_for_readme/import_sources.png)<br /><br />
 8. Choose from directory ***<zu6eg_dpu_pkg directory>/DPU-TRD/prj/Vitis/binary_container_1/*** as the target location, and import the ***dpu.xo*** file that we just created.<br />
 If you have softmax, you should also import the ***softmax.xo*** file that we just created.<br />
 9. Import sources again, and add the cpp, header and prj_config files from ***ref_files/src*** folder provided by this Git repository.<br />
