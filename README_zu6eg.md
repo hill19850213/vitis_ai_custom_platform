@@ -391,6 +391,7 @@ prop=run.impl_1.strategy=Performance_Explore
 ```
 
 10. Generate the XO file by typing: <br />
+***Make sure the path is <zu6eg_dpu_pkg directory>/DPU-TRD/prj/Vitis***.<br />
 ```make binary_container_1/dpu.xo DEVICE=zu6eg_vai_custom```<br />
 If you enable softmax function in  DPU ip, you should also generate softmax.xo:<br />
 ```make binary_container_1/softmax.xo DEVICE=zu6eg_vai_custom```<br />
