@@ -412,6 +412,7 @@ to below setting<br />
 `define RAM_USAGE_HIGH
 ```
 10. Generate the XO file by typing: <br />
+***Make sure the path is <zcu104_dpu_pkg directory>/DPU-TRD/prj/Vitis***.<br />
 ```make binary_container_1/dpu.xo DEVICE=zcu104_vai_custom```<br />
 11. Verify if the XO file is generated here: <br />
 ***<zcu104_dpu_pkg directory>/DPU-TRD/prj/Vitis/binary_container_1/dpu.xo***.<br />
