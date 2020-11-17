@@ -348,7 +348,7 @@ Image:
 3. If you don't want to destroy the TRD reference design. Copy ***DPU-TRD*** folder into another directory. For example I would copy that into my ***zu6eg_dpu_pkg*** folder: ```cp -r DPU-TRD /home/zu6eg_dpu_pkg/```<br />
 4. Source Vitis tools setting sh file: ```source <vitis install path>/Vitis/2020.1/settings64.sh```.<br />
 5. Source XRT sh file:```source opt/xilinx/xrt/setup.sh```.<br />
-6. Export SDX_PLATFORM with the directory of the custom platform xpfm file which you created before. Here in my project it would be: ```export SDX_PLATFORM=/home/zu6eg_dpu_pkg/zu6eg_vai_custom/export/zu6eg_vai_custom/zu6eg_vai_custom.xpfm```. Remember now this custom platform name is ***zcu104_vai_custom***.<br />
+6. Export SDX_PLATFORM with the directory of the custom platform xpfm file which you created before. Here in my project it would be: ```export SDX_PLATFORM=/home/zu6eg_dpu_pkg/zu6eg_vai_custom/export/zu6eg_vai_custom/zu6eg_vai_custom.xpfm```. Remember now this custom platform name is ***zu6eg_vai_custom***.<br />
 7. Navigate to the copy of the ***DPU-TRD*** folder, then go to the ***./prj/Vitis*** folder.<br />
 There are 2 files can be used to modify the DPU settings: The ***config_file/prj_config*** file is for DPU connection in Vitis project and the dpu_conf.vh is for other DPU configurations. Here we would modify the prj_config so that 2 DPU cores are enabled. And then we modify dpu_conf.vh as [DPU-TRD readme](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/DPU-TRD/README.md) suggested.<br />
 8. Modify the ***config_file/prj_config*** like below:<br />
