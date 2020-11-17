@@ -357,7 +357,7 @@ Image:
 ```
 ![vitis_linux_config.png](/pic_for_readme/workspace_setting.png)<br /><br />
 11. Click ***zcu104_vai_custom*** project in the Vitis Explorer view, click the ***Build*** button to generate the platform.
-![build_vitis_platform.png](/pic_for_readme/zuu104_build_platform.png)<br /><br />
+![build_vitis_platform.png](/pic_for_readme/zcu104_build_platform.png)<br /><br />
 ***Note: The generated platform is placed in the export directory. BSP and source files are also provided for re-building the FSBL and PMU if desired and are associated with the platform. The platform is ready to be used for application development.***<br />
 
 ## Prepare for the DPU Kernel<br /><br />
