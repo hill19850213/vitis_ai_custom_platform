@@ -19,102 +19,77 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
-#include <unistd.h>
 #include <cassert>
 #include <cmath>
 #include <cstdio>
 #include <fstream>
-#include <iomanip>
+#include <sstream>
 #include <iostream>
 #include <queue>
 #include <string>
 #include <vector>
 
-/* header file OpenCV for image processing */
 #include <opencv2/opencv.hpp>
-
-/* header file for Vitis AI advanced API */
+/* header files for Vitis AI advanced APIs */
 #include <dnndk/dnndk.h>
-
-/* header file for Caffe input images APIs */
-#include "dputils.h"
 
 using namespace std;
 using namespace cv;
 
-/* 7.71 GOP MAdds for ResNet50 */
-#define RESNET50_WORKLOAD (7.71f)
-/* DPU Kernel name for ResNet50 */
-#define KRENEL_RESNET50 "resnet50_0"
-/* Input Node for Kernel ResNet50 */
-#define INPUT_NODE      "resnet_v1_50_conv1_Conv2D"
-/* Output Node for Kernel ResNet50 */
-#define OUTPUT_NODE     "resnet_v1_50_logits_Conv2D"
+#define KRENEL_CONV "resnet50_0"
+
+#define TASK_CONV_INPUT "resnet_v1_50_conv1_Conv2D"
+#define TASK_CONV_OUTPUT "resnet_v1_50_logits_Conv2D"
 
 const string baseImagePath = "../dataset/image500_640_480/";
 
-/**
- * @brief put image names to a vector
- *
- * @param path - path of the image direcotry
- * @param images - the vector of image name
- *
- * @return none
- */
-void ListImages(string const &path, vector<string> &images) {
-    images.clear();
-    struct dirent *entry;
+/*List all images's name in path.*/
+void ListImages(std::string const &path, std::vector<std::string> &images) {
+  images.clear();
+  struct dirent *entry;
 
-    /*Check if path is a valid directory path. */
-    struct stat s;
-    lstat(path.c_str(), &s);
-    if (!S_ISDIR(s.st_mode)) {
-        fprintf(stderr, "Error: %s is not a valid directory!\n", path.c_str());
-        exit(1);
+  /*Check if path is a valid directory path. */
+  struct stat s;
+  lstat(path.c_str(), &s);
+  if (!S_ISDIR(s.st_mode)) {
+    fprintf(stderr, "Error: %s is not a valid directory!\n", path.c_str());
+    exit(1);
+  }
+
+  DIR *dir = opendir(path.c_str());
+  if (dir == nullptr) {
+    fprintf(stderr, "Error: Open %s path failed.\n", path.c_str());
+    exit(1);
+  }
+
+  while ((entry = readdir(dir)) != nullptr) {
+    if (entry->d_type == DT_REG || entry->d_type == DT_UNKNOWN) {
+      std::string name = entry->d_name;
+      std::string ext = name.substr(name.find_last_of(".") + 1);
+      if ((ext == "JPEG") || (ext == "jpeg") || (ext == "JPG") || (ext == "jpg") ||
+          (ext == "bmp") || (ext == "PNG") || (ext == "png")) {
+        images.push_back(name);
+      }
     }
+  }
 
-    DIR *dir = opendir(path.c_str());
-    if (dir == nullptr) {
-        fprintf(stderr, "Error: Open %s path failed.\n", path.c_str());
-        exit(1);
-    }
-
-    while ((entry = readdir(dir)) != nullptr) {
-        if (entry->d_type == DT_REG || entry->d_type == DT_UNKNOWN) {
-            string name = entry->d_name;
-            string ext = name.substr(name.find_last_of(".") + 1);
-            if ((ext == "JPEG") || (ext == "jpeg") || (ext == "JPG") ||
-                (ext == "jpg") || (ext == "PNG") || (ext == "png")) {
-                images.push_back(name);
-            }
-        }
-    }
-
-    closedir(dir);
-    sort(images.begin(), images.end());
+  closedir(dir);
 }
 
-/**
- * @brief load kinds from file to a vector
- *
- * @param path - path of the kinds file
- * @param kinds - the vector of kinds string
- *
- * @return none
- */
-void LoadWords(string const &path, vector<string> &kinds) {
-    kinds.clear();
-    fstream fkinds(path);
-    if (fkinds.fail()) {
-        fprintf(stderr, "Error : Open %s failed.\n", path.c_str());
-        exit(1);
-    }
-    string kind;
-    while (getline(fkinds, kind)) {
-        kinds.push_back(kind);
-    }
+/*Load all kinds*/
+void LoadWords(std::string const &path, std::vector<std::string> &kinds) {
+  kinds.clear();
+  std::fstream fkinds(path);
+  if (fkinds.fail()) {
+    fprintf(stderr, "Error : Open %s failed.\n", path.c_str());
+    exit(1);
+  }
+  std::string kind;
+  while (getline(fkinds, kind)) {
+    kinds.push_back(kind);
+  }
 
-    fkinds.close();
+  fkinds.close();
 }
 
 /**
@@ -127,85 +102,122 @@ void LoadWords(string const &path, vector<string> &kinds) {
  *
  * @return none
  */
-void TopK(const float *d, int size, int k, vector<string> &vkinds) {
-    assert(d && size > 0 && k > 0);
-    priority_queue<pair<float, int>> q;
+void TopK(const float *d, int size, int k, std::vector<std::string> &vkind) {
+  assert(d && size > 0 && k > 0);
+  std::priority_queue<std::pair<float, int>> q;
 
-    for (auto i = 0; i < size; ++i) {
-        q.push(pair<float, int>(d[i], i));
-    }
+  for (auto i = 0; i < size; ++i) {
+    q.push(std::pair<float, int>(d[i], i));
+  }
 
-    for (auto i = 0; i < k; ++i) {
-        pair<float, int> ki = q.top();
-        printf("top[%d] prob = %-8f  name = %s\n", i, d[ki.second],
-        vkinds[ki.second].c_str());
-        q.pop();
-    }
+  for (auto i = 0; i < k; ++i) {
+    std::pair<float, int> ki = q.top();
+	/* Note: For current tensorflow Resnet model, there are 1001 kinds.*/
+	int real_ki = ki.second;
+    fprintf(stdout, "top[%d] prob = %-8f  name = %s\n", i, d[ki.second],
+            vkind[real_ki].c_str());
+    q.pop();
+  }
+}
+
+void central_crop(const Mat& image, int height, int width, Mat& img) {
+  int offset_h = (image.rows - height)/2;
+  int offset_w = (image.cols - width)/2;
+  Rect box(offset_w, offset_h, width, height);
+  img = image(box);
+}
+
+
+void change_bgr(const Mat& image, int8_t* data, float scale, float* mean) {
+  for(int i = 0; i < 3; ++i)
+    for(int j = 0; j < image.rows; ++j)
+      for(int k = 0; k < image.cols; ++k) {
+		    data[j*image.rows*3+k*3+2-i] = (image.at<Vec3b>(j,k)[i] - (int8_t)mean[i]) * scale;
+      }
+
 }
 
 /**
- * @brief Run DPU Task for ResNet50
+ * @brief set input image
  *
- * @param taskResnet50 - pointer to ResNet50 Task
+ * @param task - pointer to Resnet50 CONV Task
+ * @param input_node - input node of Resnet50
+ * @param image - the input image
+ * @param  mean - mean of Resnet50
  *
  * @return none
  */
-void runResnet50(DPUTask *taskResnet50) {
-    assert(taskResnet50);
+inline void set_input_image(DPUTask *task, const string& input_node, const cv::Mat& image, float* mean){
+  Mat cropped_img;
+  DPUTensor* dpu_in = dpuGetInputTensor(task, input_node.c_str());
+  float scale = dpuGetTensorScale(dpu_in);
+  int width = dpuGetTensorWidth(dpu_in);
+  int height = dpuGetTensorHeight(dpu_in);
+  int size = dpuGetTensorSize(dpu_in);
+  vector<int8_t> abc(size);
+  central_crop(image, height, width, cropped_img);
 
-    /* Mean value for ResNet50 specified in Caffe prototxt */
-    vector<string> kinds, images;
+  int8_t* data = dpuGetTensorAddress(dpu_in);
+  change_bgr(cropped_img, data, scale, mean);
+}
 
-    /* Load all image names.*/
-    ListImages(baseImagePath, images);
-    if (images.size() == 0) {
-        cerr << "\nError: No images existing under " << baseImagePath << endl;
-        return;
-    }
+/**
+ * @brief Run DPU CONV Task and FC Task for Resnet50
+ *
+ * @param taskConv - pointer to Resnet50 CONV Task
+ * @param taskFC - pointer to Resnet50 FC Task
+ *
+ * @return none
+ */
+void runResnet(DPUTask *taskConv) {
+  assert(taskConv);
 
-    /* Load all kinds words.*/
-    LoadWords(baseImagePath + "words.txt", kinds);
-    if (kinds.size() == 0) {
-        cerr << "\nError: No words exist in file words.txt." << endl;
-        return;
-    }
+  vector<string> kinds, images;
 
-    /* Get the output Tensor for Resnet50 Task  */
-    int8_t *outAddr = (int8_t *)dpuGetOutputTensorAddress(taskResnet50, OUTPUT_NODE);
-    /* Get size of the output Tensor for Resnet50 Task  */
-    int size = dpuGetOutputTensorSize(taskResnet50, OUTPUT_NODE);
-    /* Get channel count of the output Tensor for ResNet50 Task  */
-    int channel = dpuGetOutputTensorChannel(taskResnet50, OUTPUT_NODE);
-    /* Get scale of the output Tensor for Resnet50 Task  */
-    float out_scale = dpuGetOutputTensorScale(taskResnet50, OUTPUT_NODE);
-    float *softmax = new float[size];
+  /*Load all image names */
+  ListImages(baseImagePath, images);
+  if (images.size() == 0) {
+    fprintf(stdout, "[debug] %s is the directory\n", baseImagePath.c_str());
+    cerr << "\nError: Not images exist in " << baseImagePath << endl;
+    return;
+  }
 
-    for (auto &imageName : images) {
-        cout << "\nLoad image : " << imageName << endl;
-        /* Load image and Set image into DPU Task for ResNet50 */
-        Mat image = imread(baseImagePath + imageName);
-        dpuSetInputImage2(taskResnet50, INPUT_NODE, image);
+  /*Load all kinds words.*/
+  LoadWords(baseImagePath + "words.txt", kinds);
 
-        /* Launch RetNet50 Task */
-        cout << "\nRun DPU Task for ResNet50 ..." << endl;
-        dpuRunTask(taskResnet50);
+  /* Get the output Tensor for Resnet50 Task  */
+  int8_t *outAddr = (int8_t *)dpuGetOutputTensorAddress(taskConv, TASK_CONV_OUTPUT);
+  /* Get size of the output Tensor for Resnet50 Task  */
+  int size = dpuGetOutputTensorSize(taskConv, TASK_CONV_OUTPUT);
+  /* Get channel count of the output Tensor for FC Task  */
+  int channel = dpuGetOutputTensorChannel(taskConv, TASK_CONV_OUTPUT);
+  /* Get scale of the output Tensor for Resnet50 Task  */
+  float out_scale = dpuGetOutputTensorScale(taskConv, TASK_CONV_OUTPUT);
 
-        /* Get DPU execution time (in us) of DPU Task */
-        long long timeProf = dpuGetTaskProfile(taskResnet50);
-        cout << "  DPU Task Execution time: " << (timeProf * 1.0f) << "us\n";
-        float prof = (RESNET50_WORKLOAD / timeProf) * 1000000.0f;
-        cout << "  DPU Task Performance: " << prof << "GOPS\n";
+  float *softmax = new float[size];
 
-        /* Calculate softmax on DPU and display TOP-5 classification results */
-        dpuRunSoftmax(outAddr, softmax, channel, size/channel, out_scale);
-        TopK(softmax, channel, 5, kinds);
+  for (auto &image_name : images) {
+    cout << "\nLoad image : " << image_name << endl;
+    Mat image = imread(baseImagePath + image_name);
 
-        /* Display the impage */
-        cv::imshow("Classification of ResNet50", image);
-        cv::waitKey(1);
-    }
+    /* Set image into Conv Task with mean value   */
+    float mean[3] = {0, 0, 0};
 
-    delete[] softmax;
+    set_input_image(taskConv, TASK_CONV_INPUT, image, mean);
+
+    /* Run Resnet50 CONV part */
+    cout << "\nRun Resnet50 CONV ..." << endl;
+    dpuRunTask(taskConv);
+
+    /* Calculate softmax on CPU and show TOP5 classification result */
+    dpuRunSoftmax(outAddr, softmax, channel, size/channel, out_scale);
+    TopK(softmax, channel, 5, kinds);
+
+    /* Show the image */
+    cv::imshow("Image", image);
+    cv::waitKey(1);
+  }
+  delete[] softmax;
 }
 
 /**
@@ -215,31 +227,32 @@ void runResnet50(DPUTask *taskResnet50) {
  *       deploy ResNet50 on DPU platform.
  *
  */
-int main(void) {
-    /* DPU Kernel/Task for running ResNet50 */
-    DPUKernel *kernelResnet50;
-    DPUTask *taskResnet50;
+int main(int argc, char *argv[]) {
+  /* DPU Kernels/Tasks for runing Resnet50 */
+  DPUKernel *kernelConv;
+  DPUTask *taskConv;
+  printf("Start the test\n\r");
 
-    /* Attach to DPU driver and prepare for running */
-    dpuOpen();
+  /* Attach to DPU driver and prepare for runing */
+  dpuOpen();
 
-    /* Load DPU Kernel for ResNet50 */
-    kernelResnet50 = dpuLoadKernel(KRENEL_RESNET50);
+  /* Create DPU Kernels for CONV & FC Nodes in Resnet50 */
+  kernelConv = dpuLoadKernel(KRENEL_CONV);
 
-    /* Create DPU Task for ResNet50 */
-    taskResnet50 = dpuCreateTask(kernelResnet50, 0);
+  /* Create DPU Tasks for CONV & FC Nodes in Resnet50 */
+  taskConv = dpuCreateTask(kernelConv, 0);
 
-    /* Run ResNet50 Task */
-    runResnet50(taskResnet50);
+  /* Run CONV & FC Kernels for Resnet50 */
+  runResnet(taskConv);
 
-    /* Destroy DPU Task & free resources */
-    dpuDestroyTask(taskResnet50);
+  /* Destroy DPU Tasks & free resources */
+  dpuDestroyTask(taskConv);
 
-    /* Destroy DPU Kernel & free resources */
-    dpuDestroyKernel(kernelResnet50);
+  /* Destroy DPU Kernels & free resources */
+  dpuDestroyKernel(kernelConv);
 
-    /* Dettach from DPU driver & free resources */
-    dpuClose();
+  /* Dettach from DPU driver & release resources */
+  dpuClose();
 
-    return 0;
+  return 0;
 }
