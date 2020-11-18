@@ -303,7 +303,7 @@ source <Vitis_Install_Directory>/settings64.sh
 source /opt/xilinx/xrt/setup.sh
 ```
 2. Go to the ***zu6eg_dpu_pkg*** folder you created: ```cd <full_pathname_to_zu6eg_dpu_pkg>```.<br />
-3. Launch Vitis by typing ```vits``` in the console.<br />
+3. Launch Vitis by typing ```vitis``` in the console.<br />
 4. Select ***zu6eg_dpu_pkg*** folder as workspace directory.<br />
 ![vitis_launch.png](/pic_for_readme/workspace_6eg.png)<br /><br />
 5. In the Vitis IDE, select ***File > New > Platform Project*** to create a platform project.<br />
