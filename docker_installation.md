@@ -66,7 +66,10 @@ sudo gedit /etc/docker/daemon.json
 ##
 sudo pkill -SIGHUP dockerd
 ```
-
+6. Go to <Vitis-AI-download_directory>/docker folder and install Xilinx docker gpu version
+```
+./docker_build_gpu.sh
+```
 
 ## Reference<br />
 https://github.com/Xilinx/Vitis-AI/tree/master/docker<br />
