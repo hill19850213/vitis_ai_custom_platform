@@ -44,7 +44,7 @@ sudo apt-get install nvidia-container-runtime
 ##Systemd drop-in file
 sudo mkdir -p /etc/systemd/system/docker.service.d
 sudo gedit /etc/systemd/system/docker.service.d/override.conf
-#Write the below setting tooverride.conf
+#Write the below setting to override.conf
 [Service]
 ExecStart=
 ExecStart=/usr/bin/dockerd --host=fd:// --add-runtime=nvidia=/usr/bin/nvidia-container-runtime
