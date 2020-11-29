@@ -471,7 +471,7 @@ Or go to your Vitis application folder use command ```find -name *.hwh``` to sea
 ```
 conda activate vitis-ai-tensorflow
 ```
-6. Go to ***/workspace/Tool-Example*** folder and run ```dlet -f ./system.hwh```.<br />
+6. Go to ***/workspace/Tool-Example*** folder and run ```dlet -f ./system.hwh``` or ```dlet -f ./<your-folder-path>/system.hwh```.<br />
 You should get the running log as below:
 ```
 (vitis-ai-tensorflow) hill213@hill213-pc:/workspace/Tool-Example$ dlet -f ./system.hwh 
