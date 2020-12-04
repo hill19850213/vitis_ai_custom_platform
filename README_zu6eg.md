@@ -494,10 +494,10 @@ The DCF file name should be associated with the time and date you generating thi
 2. Connect SSH:<br />
    a) Run ```ifconfig``` to get the IP address, here we take ```192.168.17.2``` as example.<br />
    b) Using SSH terminal to connect zu6eg board with SSH: ```ssh -x root@192.168.17.2```, or use putty in Windows.<br />
-3. Go to the /home/root folder and create a new folder named "Vitis-AI":
+3. Go to the /home/root folder and create a new folder named "Vitis-AI/vitis_ai_library":
 ```
 cd /home/root
-mkdir Vitis-AI/vitis_ai_library
+mkdir -p Vitis-AI/vitis_ai_library
 ```
 4. Since this is a custom design the Vitis AI library, DNNDK and test images are not installed. We need to install them on board.<br />
 I would suggest you to refer to section "Setting Up the Target" of [Vitis AI library readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/Vitis-AI-Library/README.md) to install the Vitis AI library and refer to section "Setup Evaluation Board and run Vitis AI DNNDK samples" of [DNNDK example readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/mpsoc/README.md) to install DNNDK and test images. If you feel difficult to do that please follow the steps below:<br />
@@ -556,7 +556,7 @@ cp /media/sd-mmcblk0p1/dpu.xclbin /usr/lib/
 cd /home/root/vitis_ai_dnndk_samples
 mkdir test
 cd test
-cp /media/mmcblk0p1/hello_dpu ./
+cp /media/sd-mmcblk0p1/hello_dpu ./
 ./hello_dpu
 ```
 ***We store the hello_dpu to /card/package/vitis_ai_dnndk_samples/test folder to suit the relative path in my code, you can do that according to your code context. The hello_dpu is generated in Vitis application build and was copied to sd card from previous operation.***<br />
