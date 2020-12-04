@@ -490,27 +490,26 @@ The DCF file name should be associated with the time and date you generating thi
 ***Now you should get an updated hello_dpu with a size of about 20MB(the ConvNet model is involved).***<br />
 
 ## Run Application on Board<br />
-1. Copy all the files from ***sd_card folder*** inside your Vitis application like ***<hello_dpu_application_directory>/Hardware/sd_card/*** to SD card, copy all the files under ***ref_files/boot_additional_files/*** provided by this Github repository to SD card, set ZCU104 to SD boot mode and boot up the board, connect the board with serial port.<br />
+1. Copy all the files from ***sd_card folder*** inside your Vitis application like ***<hello_dpu_application_directory>/Hardware/sd_card/*** to SD card, copy all the files under ***ref_files/boot_additional_files/*** provided by this Github repository to SD card, set zu6eg board to SD boot mode and boot up the board, connect the board with serial port.<br />
 2. Connect SSH:<br />
    a) Run ```ifconfig``` to get the IP address, here we take ```192.168.17.2``` as example.<br />
-   b) Using SSH terminal to connect ZCU104 with SSH: ```ssh -x root@192.168.17.2```, or use MobaXterm in Windows.<br />
-3. If system doesn't mount SD card , you should mount to mnt folder by running command: ```mount /dev/mmcblk0p1 /card```.<br />
-4. Go to the /card folder and create a new folder named "package":
+   b) Using SSH terminal to connect zu6eg board with SSH: ```ssh -x root@192.168.17.2```, or use putty in Windows.<br />
+3. Go to the /home/root folder and create a new folder named "Vitis-AI":
 ```
-cd /card
-mkdir package
+cd /home/root
+mkdir Vitis-AI/vitis_ai_library
 ```
-5. Since this is a custom design the Vitis AI library, DNNDK and test images are not installed. We need to install them on board.<br />
+4. Since this is a custom design the Vitis AI library, DNNDK and test images are not installed. We need to install them on board.<br />
 I would suggest you to refer to section "Setting Up the Target" of [Vitis AI library readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/Vitis-AI-Library/README.md) to install the Vitis AI library and refer to section "Setup Evaluation Board and run Vitis AI DNNDK samples" of [DNNDK example readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/mpsoc/README.md) to install DNNDK and test images. If you feel difficult to do that please follow the steps below:<br />
    a) Download the Vitis AI Runtime 1.2.1 package [Vitis AI Runtime 1.2.1](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai-runtime-1.2.1.tar.gz)<br />
    b) Copy the vitis-ai-runtime-1.2.1.tar.gz from host to board with the following command running on host:<br />
    ```
    cd <path_to_vitis-ai-runtime-1.2.1.tar.gz>
-   scp vitis-ai-runtime-1.2.1.tar.gz 192.168.17.2:/card/package
+   scp vitis-ai-runtime-1.2.1.tar.gz 192.168.17.2:/home/root
    ```
    c) Untar the packet and install them one by one on target board:<br />
    ```
-   cd /card/package
+   cd /home/root
    tar -zxvf vitis-ai-runtime-1.2.1.tar.gz
    cd ./vitis-ai-runtime-1.2.1/aarch64/centos/
    rpm -ivh --force --ignoresize libunilog-1.2.0-r10.aarch64.rpm
@@ -520,40 +519,48 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    rpm -ivh --force --ignoresize libvitis_ai_library-1.2.0-r16.aarch64.rpm   
    ```
 
+   d) Download the [vitis_ai_library_r1.2.x_images.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_library_r1.2.0_images.tar.gz) and the [vitis_ai_library_r1.2.x_video.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_library_r1.2.0_video.tar.gz). Copy them from host to the target using scp with the following command.<br />
+   ```
+   scp vitis_ai_library_r1.2.x_images.tar.gz root@192.168.17.2:/home/root
+   scp vitis_ai_library_r1.2.x_video.tar.gz root@192.168.17.2:/home/root
 
-   d) Download the package [vitis-ai_v1.2_dnndk.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk.tar.gz) and package [vitis-ai_v1.2_dnndk_sample_img.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk_sample_img.tar.gz), copy them to board:<br />
+   cd ~
+   tar -xzvf vitis_ai_library_r1.2.x_images.tar.gz -C Vitis-AI/vitis_ai_library
+   tar -xzvf vitis_ai_library_r1.2.x_video.tar.gz -C Vitis-AI/vitis_ai_library
+   ```    
+   e) Download the package [vitis-ai_v1.2_dnndk.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk.tar.gz) and package [vitis-ai_v1.2_dnndk_sample_img.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk_sample_img.tar.gz), copy them to board:<br />
    ```
-   scp vitis-ai_v1.2_dnndk.tar.gz root@192.168.17.2:/card/package
-   scp vitis-ai_v1.2_dnndk_sample_img.tar.gz root@192.168.17.2:/card/package
+   scp vitis-ai_v1.2_dnndk.tar.gz root@192.168.17.2:/home/root
+   scp vitis-ai_v1.2_dnndk_sample_img.tar.gz root@192.168.17.2:/home/root
    ```
-   e) Install DNNDK package like below:<br />
+   f) Install DNNDK package like below:<br />
    ```
-   cd /card/package
+   cd /home/root
    cp vitis-ai_v1.2_dnndk.tar.gz ~/
    cd ~/
    tar -zxvf vitis-ai_v1.2_dnndk.tar.gz
    cd vitis-ai_v1.2_dnndk/
    ./install.sh
    ```
-   g) Go back to ***/card/package*** folder and untar the dnndk example file:<br />
+   g) Go back to ***/home/root*** folder and untar the dnndk example file:<br />
    ```
-   cd /card/package
+   cd /home/root
    tar -zxvf vitis-ai_v1.2_dnndk_sample_img.tar.gz
    ```
-6.If you use your own system image, you may need to copy dpu.xclbin to /usr/lib first
+5.If you use your own system image, you may need to copy dpu.xclbin to /usr/lib first
 ```
 cp /media/sd-mmcblk0p1/dpu.xclbin /usr/lib/
 ```
-7. Go to the vitis_ai_dnndk_samples and run the hello_dpu application:<br />
+6. Go to the vitis_ai_dnndk_samples and run the hello_dpu application:<br />
 ```
-cd /card/package/vitis_ai_dnndk_samples
+cd /home/root/vitis_ai_dnndk_samples
 mkdir test
 cd test
-cp /card/hello_dpu ./
+cp /media/mmcblk0p1/hello_dpu ./
 ./hello_dpu
 ```
 ***We store the hello_dpu to /card/package/vitis_ai_dnndk_samples/test folder to suit the relative path in my code, you can do that according to your code context. The hello_dpu is generated in Vitis application build and was copied to sd card from previous operation.***<br />
-8. You should see the result like below:<br />
+7. You should see the result like below:<br />
 ![test_result.PNG](/pic_for_readme/test_result.PNG)<br /><br />
 
 ***Please refer to UG1144 if you would like to implement a ext4 rootfs.<br />***
