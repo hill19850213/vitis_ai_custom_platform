@@ -543,14 +543,19 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    You can also download [ZCU104 AI Model](https://www.xilinx.com/bin/public/openDownload?filename=xilinx_model_zoo_zcu104-1.2.0-1.aarch64.rpm) if you use ZCU104
     ```
    $scp xilinx_model_zoo_zcu104-1.2.0-1.aarch64.rpm root@IP_OF_BOARD:~/
-   #rpm -ivh --force xilinx_model_zoo_zcu102-1.2.0-1.aarch64.rpm
+   #rpm -ivh --force xilinx_model_zoo_zcu104-1.2.0-1.aarch64.rpm
     ```
    e) Download the package [vitis-ai_v1.2_dnndk.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk.tar.gz) and package [vitis-ai_v1.2_dnndk_sample_img.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk_sample_img.tar.gz), copy them to board:<br />
    ```
    scp vitis-ai_v1.2_dnndk.tar.gz root@172.16.75.189:/card/package
    scp vitis-ai_v1.2_dnndk_sample_img.tar.gz root@192.168.17.2:/card/package
    ```
-   f) Install DNNDK package like below:<br />
+   f) Download the package [vitis-ai_v1.2_dnndk.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk.tar.gz) and package [vitis-ai_v1.2_dnndk_sample_img.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk_sample_img.tar.gz), copy them to board:<br />
+   ```
+   scp vitis-ai_v1.2_dnndk.tar.gz root@192.168.17.2:/home/root
+   scp vitis-ai_v1.2_dnndk_sample_img.tar.gz root@192.168.17.2:/home/root
+   ```  
+   g) Install DNNDK package like below:<br />
    ```
    cd /home/root
    cp vitis-ai_v1.2_dnndk.tar.gz ~/
@@ -559,7 +564,7 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    cd vitis-ai_v1.2_dnndk/
    ./install.sh
    ```
-   g) Go back to ***/home/root*** folder and untar the dnndk example file:<br />
+   h) Go back to ***/home/root*** folder and untar the dnndk example file:<br />
    ```
    cd /home/root
    tar -zxvf vitis-ai_v1.2_dnndk_sample_img.tar.gz
