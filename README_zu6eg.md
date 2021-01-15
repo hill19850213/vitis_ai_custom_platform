@@ -302,7 +302,7 @@ petalinux-build --sdk
 source <Vitis_Install_Directory>/settings64.sh
 source /opt/xilinx/xrt/setup.sh
 ```
-2. Go to the ***zu6eg_dpu_pkg*** folder you created: ```cd <full_pathname_to_zu6eg_dpu_pkg>```.<br />
+2. Go to the ***zu6eg_dpu_pkg*** folder you created: ```cd <full_pathname_to_zu6eg_dpu_pkg>``` and type ./sdk.sh -d <Install Target Dir> to install PetaLinux SDK. use the -d option to provide a full pathname to the output directory zcu104_dpu_pkg/pfm (This is an example ) and confirm.<br />
 3. Launch Vitis by typing ```vitis``` in the console.<br />
 4. Select ***zu6eg_dpu_pkg*** folder as workspace directory.<br />
 ![vitis_launch.png](/pic_for_readme/workspace_6eg.png)<br /><br />
