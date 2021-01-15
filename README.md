@@ -345,13 +345,13 @@ Image:
 ## Prepare for the DPU Kernel<br /><br />
 
 1. Download Vitis AI by git command ```git clone https://github.com/Xilinx/Vitis-AI.git```.<br />
-2. Navigate to the repository:```cd Vitis-AI```, set the tag to proper tag(here we use ***v1.2.1***) by typing: ```git checkout v1.2.1```.<br />
+2. Navigate to the repository:```cd Vitis-AI```, set the tag to proper tag(here we use ***v1.3.0***) by typing: ```git checkout v1.3.0```.<br />
 3. If you don't want to destroy the TRD reference design. Copy ***DPU-TRD*** folder into another directory. For example I would copy that into my ***zu6eg_dpu_pkg*** folder: ```cp -r DPU-TRD /home/zu6eg_dpu_pkg/```<br />
-4. Source Vitis tools setting sh file: ```source <vitis install path>/Vitis/2020.1/settings64.sh```.<br />
+4. Source Vitis tools setting sh file: ```source <vitis install path>/Vitis/2020.2/settings64.sh```.<br />
 5. Source XRT sh file:```source /opt/xilinx/xrt/setup.sh```.<br />
 6. Export SDX_PLATFORM with the directory of the custom platform xpfm file which you created before. Here in my project it would be: ```export SDX_PLATFORM=/home/zu6eg_dpu_pkg/zu6eg_vai_custom/export/zu6eg_vai_custom/zu6eg_vai_custom.xpfm```. Remember now this custom platform name is ***zu6eg_vai_custom***.<br />
 7. Navigate to the copy of the ***DPU-TRD*** folder, then go to the ***./prj/Vitis*** folder.<br />
-There are 2 files can be used to modify the DPU settings: The ***config_file/prj_config*** file is for DPU connection in Vitis project and the dpu_conf.vh is for other DPU configurations. Here we would modify the prj_config so that 2 DPU cores are enabled. And then we modify dpu_conf.vh as [DPU-TRD readme](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/DPU-TRD/README.md) suggested.<br />
+There are 2 files can be used to modify the DPU settings: The ***config_file/prj_config*** file is for DPU connection in Vitis project and the dpu_conf.vh is for other DPU configurations. Here we would modify the prj_config so that 2 DPU cores are enabled. And then we modify dpu_conf.vh as [DPU-TRD readme](https://github.com/Xilinx/Vitis-AI/blob/v1.3/dsa/DPU-TRD/README.md) suggested.<br />
 8. Modify the ***config_file/prj_config*** like below:<br />
 ```
 
@@ -405,7 +405,7 @@ If you have generated softmax.xo,  and  you can verify it as below path.<br />
 1. Open Vitis workspace you were using before.<br />
 2. Select ***File -> New -> Application Project***.<br />
 3. Click ***next***<br />
-4. Select ***zcu104_vai_custom*** as platform, click ***next***.<br />
+4. Select ***zu6eg_vai_custom*** as platform, click ***next***.<br />
 5. Name the project ```hello_dpu```, click ***next***.<br />
 5. Set Domain to ***linux on psu_cortexa53***, set ***Sys_root path*** to ```<full_pathname_to_zu6eg_dpu_pkg>/pfm/sysroots/aarch64-xilinx-linux```(as you created by running ***sdk.sh***), keep the ***Kernel Image*** setting in default and click ***next***.<br />
 6. Select ***System accelearation templates -> Empty application*** and click ***finish*** to generate the application.<br />
