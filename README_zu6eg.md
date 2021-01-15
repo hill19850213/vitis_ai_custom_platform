@@ -320,6 +320,7 @@ source /opt/xilinx/xrt/setup.sh
    c) Set the processor to ***psu_cortexa53***.<br />
    d) Leave the checkmark selected to generate boot components.<br />
    e) Click ***Finish***.<br />
+![new_platform_project.png](/pic_for_readme/new_platform_project.png)<br /><br />	
 9. In the Platform Settings view, observe the following:<br />
    - The name of the Platform Settings view matches the platform project name of ***zu6eg_vai_custom***<br />
    - A psu_cortexa53 device icon is shown, containing a Linux on psu_cortexa53 domain.<br />
