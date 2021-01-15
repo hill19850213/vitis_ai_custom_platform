@@ -438,18 +438,18 @@ hineon
 ![vitis_include_settings.png](/pic_for_readme/vitis_include_settings.png)<br /><br />
 ***These steps are used to make sure your application can call libs in rootfs directly on Vitis appilcation build***
 20. The Vitis AI library and DNNDK are not included in PetaLinux SDK rootfs, now let's install them into the rootfs directory:<br />
-***Note:*** We should follow the section ***Setting Up the Host For Edge*** of [Vitis AI library readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1-old1/Vitis-AI-Library/README.md) to install the Vitis AI library and section ***Setup cross-compiler for Vitis AI DNNDK and make samples*** of [DNNDK readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1-old1/mpsoc/README.md) to install the DNNDK. If you feel difficult to following the official guide there you can refer to the following ones. ***Please just skip these steps if you already install the libs referring to the readme files***:<br />
-    a) Download the [vitis_ai_2020.1-r1.2.0.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_2020.1-r1.2.0.tar.gz) to a particular directory(here we take ***~/Downloads*** as example) and install it to the roofs folder:<br />
+***Note:*** We should follow the section ***Setting Up the Host For Edge*** of [Vitis AI library readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.3/demo/Vitis-AI-Library/README.md) to install the Vitis AI library and section ***Setup cross-compiler for Vitis AI DNNDK and make samples*** of [DNNDK readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.3/demo/DNNDK/README.md) to install the DNNDK. If you feel difficult to following the official guide there you can refer to the following ones. ***Please just skip these steps if you already install the libs referring to the readme files***:<br />
+    a) Download the [vitis_ai_2020.2-r1.3.0.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_2020.2-r1.3.0.tar.gz) to a particular directory(here we take ***~/Downloads*** as example) and install it to the roofs folder:<br />
     ```
-    cd ~/Downloads # Or some place else you download the vitis_ai_2020.1-r1.2.0.tar.gz file
-    tar -xzvf vitis_ai_2020.1-r1.2.0.tar.gz -C <full_pathname_to_zcu104_dpu_pkg>/pfm/sysroots/aarch64-xilinx-linux
+    cd ~/Downloads # Or some place else you download the vitis_ai_2020.2-r1.3.0.tar.gz file
+    tar -xzvf vitis_ai_2020.2-r1.3.0.tar.gz -C <full_pathname_to_zu6eg_dpu_pkg>/pfm/sysroots/aarch64-xilinx-linux
     ```
-    b) Download DNNDK runtime package [vitis-ai_v1.2_dnndk.tar.gz ](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk.tar.gz) to ***~/Downloads*** and install it into rootfs
+    b) Download DNNDK runtime package [vitis-ai_v1.3_dnndk.tar.gz ](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.3_dnndk.tar.gz) to ***~/Downloads*** and install it into rootfs
     ```
     cd ~/Downloads # Or some place else you download the file
-    tar -xzvf vitis-ai_v1.2_dnndk.tar.gz
-    cd vitis-ai_v1.2_dnndk
-    ./install.sh <full_pathname_to_zcu104_dpu_pkg>/pfm/sysroots/aarch64-xilinx-linux
+    tar -xzvf vitis-ai_v1.3_dnndk.tar.gz
+    cd vitis-ai_v1.3_dnndk
+    ./install.sh <full_pathname_to_zu6eg_dpu_pkg>/pfm/sysroots/aarch64-xilinx-linux
     ```
 ***Now we install both the VAI lib and DNNDK packages into the rootfs set as Vitis sysroot, then we can build application on Vitis.***<br />
 
@@ -464,7 +464,7 @@ When you load bif, the bitstram path is loaded by tool<br />
 Or go to your Vitis application folder use command ```find -name *.hwh``` to search for the file.<br />
 2. Copy the ***ref_files/Tool-Example*** folder provided by this Github repository to your Vitis AI download directory.<br />
 3. Copy this HWH file into ***<Vitis-AI-download_directory>/Tool-Example*** folder.<br />
-4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.(If you don't have docker, you can refer to the [docker_installation.md](https://github.com/hill19850213/vitis_ai_custom_platform_v1.2/blob/master/docker_installation.md)<br />
+4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.(If you don't have docker, you can refer to the [docker_installation.md](https://github.com/hill19850213/vitis_ai_custom_platform/blob/master/docker_installation.md)<br />
 ```
 ./docker_run.sh xilinx/vitis-ai-gpu:latest
 ```
@@ -476,13 +476,13 @@ conda activate vitis-ai-tensorflow
 You should get the running log as below:
 ```
 (vitis-ai-tensorflow) hill213@hill213-pc:/workspace/Tool-Example$ dlet -f ./system.hwh 
-[DLet]Generate DPU DCF file dpu-06-18-2020-12-00.dcf successfully.
+[DLet]Generate DPU DCF file dpu-11-02-2020-15-15.dcf successfully.
 ```
 The DCF file name should be associated with the time and date you generating this file.<br />
 7. Open the ***arch.json*** file and make sure the ***"dcf"*** parameter is set with the name you got on the previous step:<br />
-```"dcf"      : "./dpu-06-18-2020-12-00.dcf",```<br />
+```"dcf"      : "./dpu-11-02-2020-15-15.dcf",```<br />
 8. Run command```sh download_model.sh``` to download the Xilinx Model Zoo files for resnet-50.<br />
-9. Run command```sh custom_platform_compile.sh```, go to ***tf_resnetv1_50_imagenet_224_224_6.97G/vai_c_output_ZCU104/dpu_resnet50_0.elf*** to get the ***dpu_resnet50_0.elf*** file.<br />
+9. Run command```sh custom_platform_compile.sh```, go to ***tf_resnetv1_50_imagenet_224_224_6.97G/vai_c_output_ZCU102/dpu_resnet50_0.elf*** to get the ***dpu_resnet50_0.elf*** file.<br />
 10. Copy that file to the ***src*** folder of Vitis application ***hello_dpu***<br />
 11. Right click on the ***hello_dpu*** project folder in Vitis select ***C/C++ Building Settings**.<br />
 12. In ***Propery for Hello_DPU*** dialog box, select ***C/C++ Build->Settings->Tool Settings->GCC Host Linker->Miscellaneous->Other objects***, add a new object: ```"${workspace_loc:/${ProjName}/src/dpu_resnet50_0.elf}"```, click ***Apply and Close***.<br />
@@ -501,23 +501,19 @@ cd /home/root
 mkdir -p Vitis-AI/vitis_ai_library
 ```
 4. Since this is a custom design the Vitis AI library, DNNDK and test images are not installed. We need to install them on board.<br />
-I would suggest you to refer to section "Setting Up the Target" of [Vitis AI library readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/Vitis-AI-Library/README.md) to install the Vitis AI library and refer to section "Setup Evaluation Board and run Vitis AI DNNDK samples" of [DNNDK example readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/mpsoc/README.md) to install DNNDK and test images. If you feel difficult to do that please follow the steps below:<br />
-   a) Download the Vitis AI Runtime 1.2.1 package [Vitis AI Runtime 1.2.1](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai-runtime-1.2.1.tar.gz)<br />
-   b) Copy the vitis-ai-runtime-1.2.1.tar.gz from host to board with the following command running on host:<br />
+I would suggest you to refer to section "Setting Up the Target" of [Vitis AI library readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.3/demo/Vitis-AI-Library/README.md) to install the Vitis AI library and refer to section "Setup Evaluation Board and run Vitis AI DNNDK samples" of [DNNDK example readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.3/demo/DNNDK/README.md) to install DNNDK and test images. If you feel difficult to do that please follow the steps below:<br />
+   a) Download the Vitis AI Runtime 1.3.0 package [Vitis AI Runtime 1.3.0](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai-runtime-1.3.0.tar.gz)<br />
+   b) Copy the vitis-ai-runtime-1.3.0.tar.gz from host to board with the following command running on host:<br />
    ```
-   cd <path_to_vitis-ai-runtime-1.2.1.tar.gz>
-   scp vitis-ai-runtime-1.2.1.tar.gz 192.168.17.2:/home/root
+   cd <path_to_vitis-ai-runtime-1.3.0.tar.gz>
+   scp vitis-ai-runtime-1.3.01.tar.gz 192.168.17.2:/home/root
    ```
    c) Untar the packet and install them one by one on target board:<br />
    ```
    cd /home/root
-   tar -zxvf vitis-ai-runtime-1.2.1.tar.gz
-   cd ./vitis-ai-runtime-1.2.1/aarch64/centos/
-   rpm -ivh --force --ignoresize libunilog-1.2.0-r10.aarch64.rpm
-   rpm -ivh --force --ignoresize libxir-1.2.0-r12.aarch64.rpm
-   rpm -ivh --force --ignoresize libtarget-factory-1.2.0-r10.aarch64.rpm
-   rpm -ivh --force --ignoresize libvart-1.2.0-r16.aarch64.rpm
-   rpm -ivh --force --ignoresize libvitis_ai_library-1.2.0-r16.aarch64.rpm   
+   tar -zxvf vitis-ai-runtime-1.3.0.tar.gz
+   cd ./vitis-ai-runtime-1.3.0/aarch64/centos/
+   bash setup.sh  
    ```
     d) If you want to update the Vitis AI Model or install it to your custom board image, follow these steps
    Download [ZCU102 AI Model](https://www.xilinx.com/bin/public/openDownload?filename=xilinx_model_zoo_zcu102-1.2.0-1.aarch64.rpm)，
@@ -526,33 +522,33 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    $scp xilinx_model_zoo_zcu102-1.2.0-1.aarch64.rpm root@IP_OF_BOARD:~/
    #rpm -ivh --force xilinx_model_zoo_zcu102-1.2.0-1.aarch64.rpm
     ```
-   e) Download the [vitis_ai_library_r1.2.x_images.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_library_r1.2.0_images.tar.gz) and the [vitis_ai_library_r1.2.x_video.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_library_r1.2.0_video.tar.gz). Copy them from host to the target using scp with the following command.<br />
+   e) Download the [vitis_ai_library_r1.3.x_images.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_library_r1.3.0_images.tar.gz) and the [vitis_ai_library_r1.3.x_video.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_library_r1.3.0_video.tar.gz). Copy them from host to the target using scp with the following command.<br />
    ```
-   scp vitis_ai_library_r1.2.x_images.tar.gz root@192.168.17.2:/home/root
-   scp vitis_ai_library_r1.2.x_video.tar.gz root@192.168.17.2:/home/root
+   scp vitis_ai_library_r1.3.x_images.tar.gz root@192.168.17.2:/home/root
+   scp vitis_ai_library_r1.3.x_video.tar.gz root@192.168.17.2:/home/root
 
    cd ~
-   tar -xzvf vitis_ai_library_r1.2.x_images.tar.gz -C Vitis-AI/vitis_ai_library
-   tar -xzvf vitis_ai_library_r1.2.x_video.tar.gz -C Vitis-AI/vitis_ai_library
+   tar -xzvf vitis_ai_library_r1.3.x_images.tar.gz -C Vitis-AI/vitis_ai_library
+   tar -xzvf vitis_ai_library_r1.3.x_video.tar.gz -C Vitis-AI/vitis_ai_library
    ```    
-   f) Download the package [vitis-ai_v1.2_dnndk.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk.tar.gz) and package [vitis-ai_v1.2_dnndk_sample_img.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.2_dnndk_sample_img.tar.gz), copy them to board:<br />
+   f) Download the package [vitis-ai_v1.3_dnndk.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.3_dnndk.tar.gz) and package [vitis-ai_v1.3_dnndk_sample_img.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai_v1.3_dnndk_sample_img.tar.gz), copy them to board:<br />
    ```
-   scp vitis-ai_v1.2_dnndk.tar.gz root@192.168.17.2:/home/root
-   scp vitis-ai_v1.2_dnndk_sample_img.tar.gz root@192.168.17.2:/home/root
+   scp vitis-ai_v1.3_dnndk.tar.gz root@192.168.17.2:/home/root
+   scp vitis-ai_v1.3_dnndk_sample_img.tar.gz root@192.168.17.2:/home/root
    ```
    g) Install DNNDK package like below:<br />
    ```
    cd /home/root
-   cp vitis-ai_v1.2_dnndk.tar.gz ~/
+   cp vitis-ai_v1.3_dnndk.tar.gz ~/
    cd ~/
-   tar -zxvf vitis-ai_v1.2_dnndk.tar.gz
-   cd vitis-ai_v1.2_dnndk/
+   tar -zxvf vitis-ai_v1.3_dnndk.tar.gz
+   cd vitis-ai_v1.3_dnndk/
    ./install.sh
    ```
    h) Go back to ***/home/root*** folder and untar the dnndk example file:<br />
    ```
    cd /home/root
-   tar -zxvf vitis-ai_v1.2_dnndk_sample_img.tar.gz
+   tar -zxvf vitis-ai_v1.3_dnndk_sample_img.tar.gz
    ```
 5.If you use your own system image, you may need to copy dpu.xclbin to /usr/lib first
 ```
