@@ -302,7 +302,7 @@ petalinux-build --sdk
 source <Vitis_Install_Directory>/settings64.sh
 source /opt/xilinx/xrt/setup.sh
 ```
-2. Go to the ***zu6eg_dpu_pkg*** folder you created: ```cd <full_pathname_to_zu6eg_dpu_pkg>``` and type ./sdk.sh -d <Install Target Dir> to install PetaLinux SDK. use the -d option to provide a full pathname to the output directory zcu104_dpu_pkg/pfm (This is an example ) and confirm.<br />
+2. Go to the ***zu6eg_dpu_pkg*** folder you created: ```cd <full_pathname_to_zu6eg_dpu_pkg>``` and type ./sdk.sh -d <Install Target Dir> to install PetaLinux SDK. use the -d option to provide a full pathname to the output directory zcu6eg_dpu_pkg/pfm (This is an example ) and confirm.<br />
 3. Launch Vitis by typing ```vitis``` in the console.<br />
 4. Select ***zu6eg_dpu_pkg*** folder as workspace directory.<br />
 ![vitis_launch.png](/pic_for_readme/workspace_6eg.png)<br /><br />
@@ -405,7 +405,7 @@ If you have generated softmax.xo,  and  you can verify it as below path.<br />
 1. Open Vitis workspace you were using before.<br />
 2. Select ***File -> New -> Application Project***.<br />
 3. Click ***next***<br />
-4. Select ***zcu104_vai_custom*** as platform, click ***next***.<br />
+4. Select ***zu6eg_vai_custom*** as platform, click ***next***.<br />
 5. Name the project ```hello_dpu```, click ***next***.<br />
 5. Set Domain to ***linux on psu_cortexa53***, set ***Sys_root path*** to ```<full_pathname_to_zu6eg_dpu_pkg>/pfm/sysroots/aarch64-xilinx-linux```(as you created by running ***sdk.sh***), keep the ***Kernel Image*** setting in default and click ***next***.<br />
 6. Select ***System accelearation templates -> Empty application*** and click ***finish*** to generate the application.<br />
@@ -438,7 +438,7 @@ hineon
 ![vitis_include_settings.png](/pic_for_readme/vitis_include_settings.png)<br /><br />
 ***These steps are used to make sure your application can call libs in rootfs directly on Vitis appilcation build***
 20. The Vitis AI library and DNNDK are not included in PetaLinux SDK rootfs, now let's install them into the rootfs directory:<br />
-***Note:*** We should follow the section ***Setting Up the Host For Edge*** of [Vitis AI library readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1-old1/Vitis-AI-Library/README.md) to install the Vitis AI library and section ***Setup cross-compiler for Vitis AI DNNDK and make samples*** of [DNNDK readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1-old1/mpsoc/README.md) to install the DNNDK. If you feel difficult to following the official guide there you can refer to the following ones. ***Please just skip these steps if you already install the libs referring to the readme files***:<br />
+***Note:*** We should follow the section ***Setting Up the Host For Edge*** of [Vitis AI library readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/Vitis-AI-Library/README.md) to install the Vitis AI library and section ***Setup cross-compiler for Vitis AI DNNDK and make samples*** of [DNNDK readme file](https://github.com/Xilinx/Vitis-AI/blob/v1.2.1/mpsoc/README.md) to install the DNNDK. If you feel difficult to following the official guide there you can refer to the following ones. ***Please just skip these steps if you already install the libs referring to the readme files***:<br />
     a) Download the [vitis_ai_2020.1-r1.2.0.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_2020.1-r1.2.0.tar.gz) to a particular directory(here we take ***~/Downloads*** as example) and install it to the roofs folder:<br />
     ```
     cd ~/Downloads # Or some place else you download the vitis_ai_2020.1-r1.2.0.tar.gz file
@@ -464,7 +464,7 @@ When you load bif, the bitstram path is loaded by tool<br />
 Or go to your Vitis application folder use command ```find -name *.hwh``` to search for the file.<br />
 2. Copy the ***ref_files/Tool-Example*** folder provided by this Github repository to your Vitis AI download directory.<br />
 3. Copy this HWH file into ***<Vitis-AI-download_directory>/Tool-Example*** folder.<br />
-4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.(If you don't have docker, you can refer to the [docker_installation.md](https://github.com/hill19850213/vitis_ai_custom_platform_v1.2/blob/master/docker_installation.md)<br />
+4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.(If you don't have docker, you can refer to the [docker_installation.md](https://github.com/hill19850213/vitis_ai_custom_platform/blob/vitis_ai_1.2/docker_installation.md)<br />
 ```
 ./docker_run.sh xilinx/vitis-ai-gpu:latest
 ```
@@ -482,7 +482,7 @@ The DCF file name should be associated with the time and date you generating thi
 7. Open the ***arch.json*** file and make sure the ***"dcf"*** parameter is set with the name you got on the previous step:<br />
 ```"dcf"      : "./dpu-06-18-2020-12-00.dcf",```<br />
 8. Run command```sh download_model.sh``` to download the Xilinx Model Zoo files for resnet-50.<br />
-9. Run command```sh custom_platform_compile.sh```, go to ***tf_resnetv1_50_imagenet_224_224_6.97G/vai_c_output_ZCU104/dpu_resnet50_0.elf*** to get the ***dpu_resnet50_0.elf*** file.<br />
+9. Run command```sh custom_platform_compile.sh```, go to ***tf_resnetv1_50_imagenet_224_224_6.97G/vai_c_output_ZCU102/dpu_resnet50_0.elf*** to get the ***dpu_resnet50_0.elf*** file.<br />
 10. Copy that file to the ***src*** folder of Vitis application ***hello_dpu***<br />
 11. Right click on the ***hello_dpu*** project folder in Vitis select ***C/C++ Building Settings**.<br />
 12. In ***Propery for Hello_DPU*** dialog box, select ***C/C++ Build->Settings->Tool Settings->GCC Host Linker->Miscellaneous->Other objects***, add a new object: ```"${workspace_loc:/${ProjName}/src/dpu_resnet50_0.elf}"```, click ***Apply and Close***.<br />
