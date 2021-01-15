@@ -48,6 +48,28 @@
 `endif
 
 // |------------------------------------------------------|
+// | You can use DRAM if FPGA has extra LUTs               
+// | if change, Don't need update model
+// +------------------------------------------------------+
+// | Enable DRAM  : `define DRAM_ENABLE               
+// +------------------------------------------------------+
+// | Disable DRAM : `define DRAM_DISABLE                 
+// |------------------------------------------------------|
+
+`define DRAM_DISABLE 
+
+//config DRAM
+`ifdef DRAM_ENABLE
+    `define def_DBANK_IMG_N          1 
+    `define def_DBANK_WGT_N          1
+    `define def_DBANK_BIAS           1
+`elsif DRAM_DISABLE
+    `define def_DBANK_IMG_N          0
+    `define def_DBANK_WGT_N          0
+    `define def_DBANK_BIAS           0
+`endif
+
+// |------------------------------------------------------|
 // | RAM Usage Configuration              
 // | It relates to model. if change, must update model
 // +------------------------------------------------------+
@@ -92,6 +114,17 @@
 `define POOL_AVG_ENABLE
 
 // |------------------------------------------------------|
+// | support multiplication of two feature maps
+// | It relates to model. if change, must update model
+// +------------------------------------------------------+
+// | Enable  : `define ELEW_MULT_ENABLE           
+// +------------------------------------------------------+
+// | Disable : `define ELEW_MULT_DISABLE               
+// |------------------------------------------------------|
+
+`define ELEW_MULT_DISABLE
+
+// |------------------------------------------------------|
 // | RELU Type Configuration
 // | It relates to model. if change, must update model
 // +------------------------------------------------------+
@@ -104,6 +137,7 @@
 
 // |------------------------------------------------------|
 // | DSP48 Usage Configuration
+// | Use dsp replace of lut in conv operate 
 // | if change, Don't need update model
 // +------------------------------------------------------+
 // | `define DSP48_USAGE_HIGH              
