@@ -302,7 +302,7 @@ petalinux-build --sdk
 source <Vitis_Install_Directory>/settings64.sh
 source /opt/xilinx/xrt/setup.sh
 ```
-2. Go to the ***zu6eg_dpu_pkg*** folder you created: ```cd <full_pathname_to_zu6eg_dpu_pkg>``` and type ./sdk.sh -d <Install Target Dir> to install PetaLinux SDK. use the -d option to provide a full pathname to the output directory zcu104_dpu_pkg/pfm (This is an example ) and confirm.<br />
+2. Go to the ***zu6eg_dpu_pkg*** folder you created: ```cd <full_pathname_to_zu6eg_dpu_pkg>``` and type ./sdk.sh -d <Install Target Dir> to install PetaLinux SDK. use the -d option to provide a full pathname to the output directory zu6eg_dpu_pkg/pfm (This is an example ) and confirm.<br />
 3. Launch Vitis by typing ```vitis``` in the console.<br />
 4. Select ***zu6eg_dpu_pkg*** folder as workspace directory.<br />
 ![vitis_launch.png](/pic_for_readme/workspace_6eg.png)<br /><br />
@@ -419,7 +419,7 @@ If you have softmax, you should also import the ***softmax.xo*** file that we ju
 12. Select the "DPUCZDX8G" included as part of the dpu.xo file that we included earlier.<br />
 13. Click on binary_container_1 to change the name to dpu.<br />
 14. Click on ***DPUCZDX8G*** and change the ***Compute Units*** from ```1``` to ```2``` because we have 2 dpu cores involved.<br />
-15. Right click on "dpu", select ***Edit V++ Options***, add ```--config ../src/prj_config -s``` as ***V++ Options***, then click ***OK***.<br />
+15. Right click on "dpu", select ***Edit V++ Options***, add ```--config <zu6eg_dpu_pkg path>/hello_dpu_kernels/src/prj_config -s``` as ***V++ Options***, then click ***OK***.<br />
 16. Go back to the ***Explorer*** window, right click on the ***hello_dpu*** project folder select ***C/C++ Building Settings**.<br />
 17. In ***Propery for hello_dpu*** dialog box, select ***C/C++ Build->Settings->Tool Settings->GCC Host Linker->Libraries***
 , click the green "+" to add the following libraries:
@@ -460,7 +460,7 @@ When you load bif, the bitstram path is loaded by tool<br />
 ![zu6eg_boot_gen.png](/pic_for_readme/zu6eg_boot_gen_bif.png)<br />
 ## Prepare the Network Deployment File<br />
 
-1. Find HWH file from your Vitis application folder***hello_dpu/Hardware/dpu.build/link/vivado/vpl/prj/prj.srcs/sources_1/bd/system/hw_handoff/system.hwh***<br />
+1. Find HWH file from your Vitis application folder***hello_dpu_system_hw_link/Hardware/dpu.build/link/vivado/vpl/prj/prj.gen/sources_1/bd/system/hw_handoff/system.hwh***<br />
 Or go to your Vitis application folder use command ```find -name *.hwh``` to search for the file.<br />
 2. Copy the ***ref_files/Tool-Example*** folder provided by this Github repository to your Vitis AI download directory.<br />
 3. Copy this HWH file into ***<Vitis-AI-download_directory>/Tool-Example*** folder.<br />
