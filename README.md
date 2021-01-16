@@ -569,16 +569,16 @@ cp /media/sd-mmcblk0p1/hello_dpu ./
 ***Please refer to UG1144 if you would like to implement a ext4 rootfs.<br />***
 ## Reference<br />
 https://github.com/gewuek/vitis_ai_custom_platform_flow<br />
-https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/index.html<br />
+https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/index.html<br />
 https://github.com/Xilinx/Vitis-AI<br />
 https://github.com/Xilinx/Vitis_Embedded_Platform_Source<br />
 https://github.com/Xilinx/Vitis-AI-Tutorials/tree/Vitis-AI-Custom-Platform<br />
 ***Note: If you would like to try with one click creating VAI platform flow it is recommended to try with the official platform source code for*** [zcu102_dpu](https://github.com/Xilinx/Vitis_Embedded_Platform_Source/tree/master/Xilinx_Official_Platforms/zcu102_base) ***and*** [zcu104_dpu](https://github.com/Xilinx/Vitis_Embedded_Platform_Source/tree/master/Xilinx_Official_Platforms/zcu104_base)***.*** <br /><br /><br />
 
 ## More Information about Install and Set Vitis and XRT Environment<br />
-https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/settingupvitisenvironment.html#zks1565446519267<br />
-https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/pjr1542153622642.html<br />
-https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/rbk1547656041291.html<br />
+https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/settingupvitisenvironment.html#zks1565446519267<br />
+https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/pjr1542153622642.html<br />
+https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/rbk1547656041291.html<br />
 
 
 
