@@ -414,12 +414,13 @@ If you have generated softmax.xo,  and  you can verify it as below path.<br />
 If you have softmax, you should also import the ***softmax.xo*** file that we just created.<br />
 9. Import sources again, and add the cpp, header and prj_config files from ***ref_files/src*** folder provided by this Git repository.<br />
 10. In the Explorer window double click the hello_dpu.prj file to open it, change the ***Active Build configuration*** from ***Emulation-SW*** to ***Hardware***.<br />
-11. Under Hardware Functions, click the lightning bolt logo to ***Add Hardware Function***.<br />
-![add_hardware_function.png](/pic_for_readme/add_softmax.png)<br /><br />
+11. Under Hardware Functions in hello_dpu_system_hw_link item, click the lightning bolt logo to ***Add Hardware Function***.<br />
+![add_dpu_softmax_202.png](/pic_for_readme/add_dpu_softmax_202.png)<br /><br />
 12. Select the "DPUCZDX8G" included as part of the dpu.xo file that we included earlier.<br />
 13. Click on binary_container_1 to change the name to dpu.<br />
 14. Click on ***DPUCZDX8G*** and change the ***Compute Units*** from ```1``` to ```2``` because we have 2 dpu cores involved.<br />
 15. Right click on "dpu", select ***Edit V++ Options***, add ```--config <zu6eg_dpu_pkg path>/hello_dpu_kernels/src/prj_config -s``` as ***V++ Options***, then click ***OK***.<br />
+![vitis_v++_config_202.png](/pic_for_readme/vitis_v++_config_202.png)<br /><br />
 16. Go back to the ***Explorer*** window, right click on the ***hello_dpu*** project folder select ***C/C++ Building Settings**.<br />
 17. In ***Propery for hello_dpu*** dialog box, select ***C/C++ Build->Settings->Tool Settings->GCC Host Linker->Libraries***
 , click the green "+" to add the following libraries:
