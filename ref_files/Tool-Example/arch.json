@@ -1,5 +1,5 @@
 {
-    "target"   : "DPUCZDX8G",
-    "dcf"      : "./dpu-06-18-2020-12-00.dcf",
+    "target"   : "DPUCZDX8G_ISA0_B4096_MAX_BG2",
+    "dcf"      : "./dpu-11-02-2020-15-15.dcf",
     "cpu_arch" : "arm64"
 }
