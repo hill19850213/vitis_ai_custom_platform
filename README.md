@@ -461,8 +461,46 @@ When you load bif, the bitstram path is loaded by tool<br />
 ![zu6eg_boot_gen.png](/pic_for_readme/zu6eg_boot_gen_bif.png)<br />
 ## Prepare the Network Deployment File<br />
 
-1. Find HWH file from your Vitis application folder***hello_dpu_system_hw_link/Hardware/dpu.build/link/vivado/vpl/prj/prj.gen/sources_1/bd/system/hw_handoff/system.hwh***<br />
+1-1. Find HWH file from your Vitis application folder***hello_dpu_system_hw_link/Hardware/dpu.build/link/vivado/vpl/prj/prj.gen/sources_1/bd/system/hw_handoff/system.hwh***<br />
 Or go to your Vitis application folder use command ```find -name *.hwh``` to search for the file.<br />
+1-2. Use command ```find -name arch.json``` to find arch.json and compare the content to get the correct string as below
+   ```
+DPUCAHX8H_ISA2=>0x20200000000002a,
+DPUCAHX8H_ISA2_ELP2=>0x20200000000002e,
+DPUCAHX8L_ISA0=>0x30000000000001d,
+DPUCVDX8G_ISA0_B16384C64B1=>0x600000076080812,
+DPUCVDX8G_ISA0_B8192C32B1=>0x600000076080811,
+DPUCVDX8G_ISA0_B8192C32B1_ELP4=>0x600000076040411,
+DPUCVDX8G_ISA0_B8192C32B3=>0x600000076080831,
+DPUCVDX8G_ISA0_B8192C32B3_DW=>0x6000000f6088831,
+DPUCVDX8G_ISA0_B8192C32B3_I4W8B2=>0x600000276080831,
+DPUCVDX8G_ISA0_B8192C32B3_I8W4B2=>0x600000376080831,
+DPUCVDX8G_ISA0_B8192C32B3_I8W8B2=>0x600000176080831,
+DPUCVDX8H_ISA0=>0x5000000000007ee,
+DPUCZDI4G_ISA0_B4096_DEMO_SSD=>0x400002003220206,
+DPUCZDI4G_ISA0_B8192D8_DEMO_SSD=>0x400002003220207,
+DPUCZDX8G_ISA0_B1024_MAX=>0x1000020f7014402,
+DPUCZDX8G_ISA0_B1024_MIN=>0x100002022010102,
+DPUCZDX8G_ISA0_B1152_MAX=>0x1000020f7012203,
+DPUCZDX8G_ISA0_B1152_MIN=>0x100002022010103,
+DPUCZDX8G_ISA0_B1600_MAX=>0x1000020f7014404,
+DPUCZDX8G_ISA0_B1600_MIN=>0x100002022010104,
+DPUCZDX8G_ISA0_B2304_MAX=>0x1000020f7014405,
+DPUCZDX8G_ISA0_B2304_MAX_BG2=>0x1000020f6014405,
+DPUCZDX8G_ISA0_B2304_MIN=>0x100002022010105,
+DPUCZDX8G_ISA0_B3136_MAX=>0x1000020f7014406,
+DPUCZDX8G_ISA0_B3136_MAX_BG2=>0x1000020f6014406,
+DPUCZDX8G_ISA0_B3136_MIN=>0x100002022010106,
+DPUCZDX8G_ISA0_B4096_MAX=>0x1000020f7014407,
+DPUCZDX8G_ISA0_B4096_MAX_BG2=>0x1000020f6014407,
+DPUCZDX8G_ISA0_B4096_MAX_EM=>0x1000030f7014407,
+DPUCZDX8G_ISA0_B4096_MIN=>0x100002022010107,
+DPUCZDX8G_ISA0_B512_MAX=>0x1000020f7012200,
+DPUCZDX8G_ISA0_B512_MIN=>0x100002022010100,
+DPUCZDX8G_ISA0_B800_MAX=>0x1000020f7012201,
+DPUCZDX8G_ISA0_B800_MIN=>0x100002022010101}
+   ```
+In this eample, the correct string is DPUCZDX8G_ISA0_B4096_MAX_BG2. And the You should update Tool-Example/arch.json to replace your own string.
 2. Copy the ***ref_files/Tool-Example*** folder provided by this Github repository to your Vitis AI download directory.<br />
 3. Copy this HWH file into ***<Vitis-AI-download_directory>/Tool-Example*** folder.<br />
 4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.(If you don't have docker, you can refer to the [docker_installation.md](https://github.com/hill19850213/vitis_ai_custom_platform/blob/master/docker_installation.md)<br />
