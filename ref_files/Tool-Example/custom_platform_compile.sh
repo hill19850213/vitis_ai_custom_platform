@@ -1,7 +1,7 @@
 #!/bin/sh
 
-TARGET=ZCU104
-NET_NAME=resnet50
+TARGET=ZCU102
+NET_NAME=tf_resnet50
 DEPLOY_MODEL_PATH=vai_q_output
 TF_NETWORK_PATH=./tf_resnetv1_50_imagenet_224_224_6.97G
 
