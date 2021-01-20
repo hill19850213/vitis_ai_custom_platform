@@ -1,7 +1,7 @@
 ## Based on zcu104 sturcture, You can construct the simliar block diagram on zu6eg<br /><br />
 
 ## Create the Vivado Hardware Component and Generate XSA<br /><br />
-1. Source <Vitis_Install_Directory>/settings64.sh, and run the Vivado by typing "vivado" in the console.<br />
+1. Source <Vitis 2020.2_Install_Directory>/settings64.sh, and run the Vivado by typing "vivado" in the console.<br />
 2. Create a Vivado project named zu6eg_custom_platform .<br />
    a) Select ***File->Project->New***.<br />
    b) Click ***Next***.<br />
@@ -101,7 +101,8 @@ You can provide kernel interrupt support by adding an AXI interrupt controller t
 ***Note: Now we have finished the IPI design , let's set some platform parameters and generate the XSA***<br /><br /><br />
 
 ## Configuring Platform Interface Properties<br /><br />
-1. Click ***Window->Platform interfaces***, and then click ***Enable platform interfaces*** link to open the ***Platform Interfaces*** Window.<br />
+1. Run the following Tcl command to enable the extensive platform feature<br />
+```set_property platform.extensible TRUE [get_project]```
 2. Select ***Platform-system->zynq_ultra_ps_e_0->S_AXI_HP0_FPD***, in ***Platform interface Properties*** tab enable the ***Enabled*** option like below:<br />
 ![enable_s_axi_hp0_fpd.png](/pic_for_readme/enable_s_axi_hp0_fpd.png)<br /><br />
 3. Select ***Options*** tab, set ***memport*** to ```S_AXI_HP``` and set ***sptag*** to ```HP0``` like below:
@@ -308,7 +309,7 @@ source /opt/xilinx/xrt/setup.sh
 ![vitis_launch.png](/pic_for_readme/workspace_6eg.png)<br /><br />
 5. In the Vitis IDE, select ***File > New > Platform Project*** to create a platform project.<br />
 6. In the Create New Platform Project dialog box, do the following:<br />
-   a) Enter the project name. For this example, type ```zu6eg_vai_custom```.<br />
+   a) Enter the project name. For this example, type ```zu6eg_custom```.<br />
    b) Leave the checkbox for the default location selected.<br />
    c) Click ***Next***.<br />
 7. In the Platform Project dialog box, do the following:<br />
