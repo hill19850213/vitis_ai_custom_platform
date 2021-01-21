@@ -339,7 +339,7 @@ Image:
     Browse to zu6eg_dpu_pkg/pfm/boot and click OK.
 ```
 ![vitis_linux_config.png](/pic_for_readme/workspace_setting_6eg.png)<br /><br />
-11. Click ***zu6eg_vai_custom*** project in the Vitis Explorer view, click the ***Build*** button to generate the platform.
+11. Click ***zu6eg_custom*** project in the Vitis Explorer view, click the ***Build*** button to generate the platform.
 ![build_vitis_platform.png](/pic_for_readme/zu6eg_build_platform.png)<br /><br />
 ***Note: The generated platform is placed in the export directory. BSP and source files are also provided for re-building the FSBL and PMU if desired and are associated with the platform. The platform is ready to be used for application development.***<br />
 
@@ -406,7 +406,7 @@ If you have generated softmax.xo,  and  you can verify it as below path.<br />
 1. Open Vitis workspace you were using before.<br />
 2. Select ***File -> New -> Application Project***.<br />
 3. Click ***next***<br />
-4. Select ***zu6eg_vai_custom*** as platform, click ***next***.<br />
+4. Select ***zu6eg_custom*** as platform, click ***next***.<br />
 5. Name the project ```hello_dpu```, click ***next***.<br />
 5. Set Domain to ***linux on psu_cortexa53***, set ***Sys_root path*** to ```<full_pathname_to_zu6eg_dpu_pkg>/pfm/sysroots/aarch64-xilinx-linux```(as you created by running ***sdk.sh***), keep the ***Kernel Image*** setting in default and click ***next***.<br />
 6. Select ***System accelearation templates -> Empty application*** and click ***finish*** to generate the application.<br />
@@ -555,13 +555,9 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    cd ./vitis-ai-runtime-1.3.0/aarch64/centos/
    bash setup.sh  
    ```
-    d) If you want to update the Vitis AI Model or install it to your custom board image, follow these steps
-   Download [ZCU102 AI Model](https://www.xilinx.com/bin/public/openDownload?filename=xilinx_model_zoo_zcu102-1.2.0-1.aarch64.rpm)，
-   You can also download [ZCU104 AI Model](https://www.xilinx.com/bin/public/openDownload?filename=xilinx_model_zoo_zcu104-1.2.0-1.aarch64.rpm) if you use ZCU104
-    ```
-   $scp xilinx_model_zoo_zcu102-1.2.0-1.aarch64.rpm root@IP_OF_BOARD:~/
-   #rpm -ivh --force xilinx_model_zoo_zcu102-1.2.0-1.aarch64.rpm
-    ```
+    d) If you want to update the Vitis AI Model which you want to use
+   Download [ AI Model](https://github.com/Xilinx/Vitis-AI/tree/master/models/AI-Model-Zoo/model-list)，
+
    e) Download the [vitis_ai_library_r1.3.x_images.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_library_r1.3.0_images.tar.gz) and the [vitis_ai_library_r1.3.x_video.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_library_r1.3.0_video.tar.gz). Copy them from host to the target using scp with the following command.<br />
    ```
    scp vitis_ai_library_r1.3.x_images.tar.gz root@192.168.17.2:/home/root
