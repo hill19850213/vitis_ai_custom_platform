@@ -465,7 +465,7 @@ When you load bif, the bitstram path is loaded by tool<br />
 1-1. Find HWH file from your Vitis application folder***hello_dpu_system_hw_link/Hardware/dpu.build/link/vivado/vpl/prj/prj.gen/sources_1/bd/system/hw_handoff/system.hwh***<br />
 Or go to your Vitis application folder use command ```find -name *.hwh``` to search for the file.<br />
 1-2. Use command ```find -name arch.json``` to find arch.json and compare the content to get the correct string as below
-   ```
+```
 DPUCAHX8H_ISA2=>0x20200000000002a,
 DPUCAHX8H_ISA2_ELP2=>0x20200000000002e,
 DPUCAHX8L_ISA0=>0x30000000000001d,
@@ -500,8 +500,8 @@ DPUCZDX8G_ISA0_B512_MAX=>0x1000020f7012200,
 DPUCZDX8G_ISA0_B512_MIN=>0x100002022010100,
 DPUCZDX8G_ISA0_B800_MAX=>0x1000020f7012201,
 DPUCZDX8G_ISA0_B800_MIN=>0x100002022010101}
-   ```
-In this eample, the correct string is DPUCZDX8G_ISA0_B4096_MAX_BG2. And the You should update Tool-Example/arch.json to replace your own string.
+```
+In this eample, the correct string is DPUCZDX8G_ISA0_B4096_MAX_BG2. And the You should update Tool-Example/arch.json to replace your own string.<br />
 2. Copy the ***ref_files/Tool-Example*** folder provided by this Github repository to your Vitis AI download directory.<br />
 3. Copy this HWH file into ***<Vitis-AI-download_directory>/Tool-Example*** folder.<br />
 4. Go to ***<Vitis-AI-download_directory>*** folder and launch the docker.(If you don't have docker, you can refer to the [docker_installation.md](https://github.com/hill19850213/vitis_ai_custom_platform/blob/master/docker_installation.md)<br />
@@ -545,8 +545,8 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    a) Download the Vitis AI Runtime 1.3.0 package [Vitis AI Runtime 1.3.0](https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai-runtime-1.3.0.tar.gz)<br />
    b) Copy the vitis-ai-runtime-1.3.0.tar.gz from host to board with the following command running on host:<br />
    ```
-   cd <path_to_vitis-ai-runtime-1.3.0.tar.gz>
-   scp vitis-ai-runtime-1.3.01.tar.gz 192.168.17.2:/home/root
+   cd <vitis-ai-runtime-1.3.0.tar.gz location>
+   scp vitis-ai-runtime-1.3.0.tar.gz 192.168.17.2:/home/root
    ```
    c) Untar the packet and install them one by one on target board:<br />
    ```
@@ -556,7 +556,7 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    bash setup.sh  
    ```
     d) If you want to update the Vitis AI Model which you want to use
-   Download [ AI Model](https://github.com/Xilinx/Vitis-AI/tree/master/models/AI-Model-Zoo/model-list)，
+   Download [ AI Model](https://github.com/Xilinx/Vitis-AI/tree/master/models/AI-Model-Zoo/model-list)<br />
 
    e) Download the [vitis_ai_library_r1.3.x_images.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_library_r1.3.0_images.tar.gz) and the [vitis_ai_library_r1.3.x_video.tar.gz](https://www.xilinx.com/bin/public/openDownload?filename=vitis_ai_library_r1.3.0_video.tar.gz). Copy them from host to the target using scp with the following command.<br />
    ```
@@ -586,7 +586,7 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
    cd /home/root
    tar -zxvf vitis-ai_v1.3_dnndk_sample_img.tar.gz
    ```
-5.If you use your own system image, you may need to copy dpu.xclbin to /usr/lib first
+5.If you use your own system image, you may need to copy dpu.xclbin to /usr/lib first <br />
 ```
 cp /media/sd-mmcblk0p1/dpu.xclbin /usr/lib/
 ```
