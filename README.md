@@ -323,7 +323,7 @@ source /opt/xilinx/xrt/setup.sh
    e) Click ***Finish***.<br />
 ![new_platform_project.png](/pic_for_readme/new_platform_project.png)<br /><br />	
 9. In the Platform Settings view, observe the following:<br />
-   - The name of the Platform Settings view matches the platform project name of ***zu6eg_vai_custom***<br />
+   - The name of the Platform Settings view matches the platform project name of ***zu6eg_custom***<br />
    - A psu_cortexa53 device icon is shown, containing a Linux on psu_cortexa53 domain.<br />
    - A psu_cortexa53 device icon is shown, containing a zynqmp_fsbl BSP.<br />
    - A psu_pmu_0 device icon is shown, containing a zynqmp_pmufw BSP.<br />
