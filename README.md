@@ -391,7 +391,7 @@ prop=run.impl_1.strategy=Performance_Explore
 `define URAM_DISABLE 
 `define RAM_USAGE_LOW
 ```
-
+If you want to know the parameter of dpu_conf, you can refer to the PG338
 10. Generate the XO file by typing: <br />
 ***Make sure the path is <zu6eg_dpu_pkg directory>/DPU-TRD/prj/Vitis***.<br />
 ```make binary_container_1/dpu.xo DEVICE=zu6eg_custom```<br />
@@ -609,6 +609,7 @@ https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/index.html<br />
 https://github.com/Xilinx/Vitis-AI<br />
 https://github.com/Xilinx/Vitis_Embedded_Platform_Source<br />
 https://github.com/Xilinx/Vitis-AI-Tutorials/tree/Vitis-AI-Custom-Platform<br />
+https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_3/pg338-dpu.pdf<br />
 ***Note: If you would like to try with one click creating VAI platform flow it is recommended to try with the official platform source code for*** [zcu102_dpu](https://github.com/Xilinx/Vitis_Embedded_Platform_Source/tree/master/Xilinx_Official_Platforms/zcu102_base) ***and*** [zcu104_dpu](https://github.com/Xilinx/Vitis_Embedded_Platform_Source/tree/master/Xilinx_Official_Platforms/zcu104_base)***.*** <br /><br /><br />
 
 ## More Information about Install and Set Vitis and XRT Environment<br />
