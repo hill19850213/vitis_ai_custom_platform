@@ -614,8 +614,8 @@ https://www.xilinx.com/support/documentation/ip_documentation/dpu/v3_3/pg338-dpu
 
 ## More Information about Install and Set Vitis and XRT Environment<br />
 https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/settingupvitisenvironment.html#zks1565446519267<br />
-https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/pjr1542153622642.html<br />
-https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/rbk1547656041291.html<br />
+https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/acceleration_installation.html#pjr1542153622642<br />
+https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/acceleration_installation.html#rbk1547656041291<br />
 
 
 
