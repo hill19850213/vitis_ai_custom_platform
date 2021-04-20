@@ -531,7 +531,7 @@ The DCF file name should be associated with the time and date you generating thi
 2. Connect SSH:<br />
    a) Run ```ifconfig``` to get the IP address, here we take ```192.168.17.2``` as example.<br />
    b) Using SSH terminal to connect zu6eg board with SSH: ```ssh -x root@192.168.17.2```, or use putty in Windows.<br />
-3. Go to the /home/root folder and create a new folder named "Vitis-AI/vitis_ai_library":
+3. Go to the /home/root folder and create a new folder named "Vitis-AI/vitis_ai_library":<br />
 ```
 cd /home/root
 mkdir -p Vitis-AI/vitis_ai_library
@@ -586,10 +586,8 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
 ```
 cp /media/sd-mmcblk0p1/dpu.xclbin /usr/lib/
 ```
-6. Refer to the example of the VART and learn how to operate the example <br />
-```
-[VART example](https://github.com/Xilinx/Vitis-AI/tree/master/demo/VART)
-```
+6.Refer to the example of the [VART](https://github.com/Xilinx/Vitis-AI/tree/master/demo/VART) and learn how to operate the example <br />
+
 
 ***Please refer to UG1144 if you would like to implement a ext4 rootfs.<br />***
 ## Reference<br />
