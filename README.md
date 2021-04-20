@@ -522,13 +522,9 @@ The DCF file name should be associated with the time and date you generating thi
 7. Open the ***arch.json*** file and make sure the ***"dcf"*** parameter is set with the name you got on the previous step:<br />
 ```"dcf"      : "./dpu-11-02-2020-15-15.dcf",```<br />
 8. Run command```sh download_model.sh``` to download the Xilinx Model Zoo files for resnet-50.<br />
-9. Run command```sh custom_platform_compile.sh```, go to ***tf_resnetv1_50_imagenet_224_224_6.97G/vai_c_output_ZCU102/dpu_resnet50_0.elf*** to get the ***dpu_resnet50_0.elf*** file.<br />
-10. Copy that file to the ***src*** folder of Vitis application ***hello_dpu***<br />
-11. Right click on the ***hello_dpu*** project folder in Vitis select ***C/C++ Building Settings**.<br />
-12. In ***Propery for Hello_DPU*** dialog box, select ***C/C++ Build->Settings->Tool Settings->GCC Host Linker->Miscellaneous->Other objects***, add a new object: ```"${workspace_loc:/${ProjName}/src/dpu_resnet50_0.elf}"```, click ***Apply and Close***.<br />
-13. Right click the ***hello_dpu*** project folder and select ***Build Project***<br />
-![zu6eg_dpu_elf.png](/pic_for_readme/zu6eg_dpu_elf.png)<br /><br />
-***Now you should get an updated hello_dpu with a size of about 20MB(the ConvNet model is involved).***<br />
+9. Run command```sh custom_platform_compile.sh```, go to ***tf_resnetv1_50_imagenet_224_224_6.97G/vai_c_output_ZCU102/*** to get the ***tf_resnet50.xmodel*** file.<br />
+10. Copy this file to the ***sd_card folder***<br />
+
 
 ## Run Application on Board<br />
 1. Copy all the files from ***sd_card folder*** inside your Vitis application like ***<hello_dpu_application_directory>/Hardware/sd_card/*** to SD card, copy all the files under ***ref_files/boot_additional_files/*** provided by this Github repository to SD card, set zu6eg board to SD boot mode and boot up the board, connect the board with serial port.<br />
@@ -590,17 +586,8 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
 ```
 cp /media/sd-mmcblk0p1/dpu.xclbin /usr/lib/
 ```
-6. Go to the vitis_ai_dnndk_samples and run the hello_dpu application:<br />
-```
-cd /home/root/vitis_ai_dnndk_samples
-mkdir test
-cd test
-cp /media/sd-mmcblk0p1/hello_dpu ./
-./hello_dpu
-```
-***We store the hello_dpu to /card/package/vitis_ai_dnndk_samples/test folder to suit the relative path in my code, you can do that according to your code context. The hello_dpu is generated in Vitis application build and was copied to sd card from previous operation.***<br />
-7. You should see the result like below:<br />
-![test_result.PNG](/pic_for_readme/test_result.PNG)<br /><br />
+6. Refer to the example of the VART and learn how to operate the example<br />
+
 
 ***Please refer to UG1144 if you would like to implement a ext4 rootfs.<br />***
 ## Reference<br />
