@@ -586,8 +586,10 @@ I would suggest you to refer to section "Setting Up the Target" of [Vitis AI lib
 ```
 cp /media/sd-mmcblk0p1/dpu.xclbin /usr/lib/
 ```
-6. Refer to the example of the VART and learn how to operate the example<br />
-
+6. Refer to the example of the VART and learn how to operate the example <br />
+```
+[VART example](https://github.com/Xilinx/Vitis-AI/tree/master/demo/VART)
+```
 
 ***Please refer to UG1144 if you would like to implement a ext4 rootfs.<br />***
 ## Reference<br />
