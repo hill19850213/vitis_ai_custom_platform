@@ -84,3 +84,4 @@ sudo pkill -SIGHUP dockerd
 ## Reference<br />
 https://github.com/Xilinx/Vitis-AI/tree/master/docker<br />
 https://github.com/Xilinx/Vitis-AI/tree/master/doc/install_docker<br />
+https://github.com/NVIDIA/nvidia-container-runtime<br />
