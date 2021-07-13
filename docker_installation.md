@@ -39,6 +39,16 @@ sudo usermod -aG docker hill213
 ```
 5.Install NVIDIA Docker Runtime and some docker settings are need to configuration<br />
 ```
+curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | \
+  sudo apt-key add -
+  
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+
+curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-container-runtime.list
+  
+gedit /etc/apt/sources.list.d/nvidia-container-runtime.list (change 18.04 to 20.04)  
+apt-get update
 sudo apt-get install nvidia-container-runtime
 
 ##Systemd drop-in file
