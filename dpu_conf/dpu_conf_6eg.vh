@@ -78,7 +78,7 @@
 // | RAM Usage Low  : `define RAM_USAGE_LOW                 
 // |------------------------------------------------------|
 
-`define RAM_USAGE_LOW
+`define RAM_USAGE_HIGH
 
 // |------------------------------------------------------|
 // | Channel Augmentation Configuration
@@ -122,9 +122,9 @@
 // | Disable : `define ELEW_MULT_DISABLE               
 // |------------------------------------------------------|
 
-`define ELEW_MULT_DISABLE
+`define ELEW_MULT_ENABLE
 
-// |------------------------------------------------------|
+// +------------------------------------------------------+
 // | RELU Type Configuration
 // | It relates to model. if change, must update model
 // +------------------------------------------------------+
@@ -136,7 +136,7 @@
 `define RELU_LEAKYRELU_RELU6
 
 // |------------------------------------------------------|
-// | DSP48 Usage Configuration
+// | DSP48 Usage Configuration  
 // | Use dsp replace of lut in conv operate 
 // | if change, Don't need update model
 // +------------------------------------------------------+
